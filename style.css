@@ -1,0 +1,74 @@
+
+
+#clock {
+    font-size: small;
+   
+   /* float: left; */
+}
+
+#camera {
+   /* float: right; */
+   position: absolute;
+   right: 1%; 
+}
+
+.menu_button {
+     background-color: ivory;
+     
+ }
+ .menu_button:hover {
+     background-color: aquamarine;
+ }
+ .menu_button:active {
+     background-color: tomato;
+ }
+ /*
+ .menu_button:focus {
+     background-color: yellowgreen;
+ }*/
+
+ .menu_button[name="current_menu_button"] {
+     background-color: hotpink;
+ }
+
+
+
+.essay {
+    background-color: antiquewhite;
+    border: 3px solid; 
+    border-color: yellow;
+    resize: none;
+    
+}
+
+.essay_title {
+    color: transparent;
+     text-shadow: 0 0 5px rgba(0,0,0,0.5);
+     text-shadow: 0 0 5px greenyellow;
+
+     font-size: 50px;
+
+     -webkit-transition: text-shadow 1s linear;
+     -moz-transition: text-shadow 1s linear;
+     -ms-transition: text-shadow 1s linear;
+     -o-transition: text-shadow 1s linear;
+     transition: text-shadow 1s linear;
+}
+
+.essay_text {
+
+    width: 350px;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    background: transparent;
+
+    position: absolute;
+    top: 20%;
+    right: 41%;
+
+    border: 3px solid; 
+    border-color: yellow;
+
+}
