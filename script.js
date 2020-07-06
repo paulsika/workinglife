@@ -1,6 +1,18 @@
 /**** GENERAL VALUES */
+
+/*
 var canvasWidth = 1100 ; 
 var canvasHeight = 500 ; 
+*/
+
+/*
+var canvasWidth =  window.innerWidth ; 
+var canvasHeight = window.innerHeight;
+*/
+
+var canvasWidth = window.outerWidth ; 
+var canvasHeight = window.outerHeight ;
+
 
 let grid_label = "Soft Body"
 let grid_origin = {"x":0, "y":0}
@@ -219,29 +231,70 @@ function mouse_clicked(p) {
     update_click_count(p); 
 }
 
+
+let background_color = "#BEBEBE"
+
 function p5_setup (p){
 
     let canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id("canvas"); //using p5 own function   
-    p.background(220, 180, 200);
-    init_physics();  //should automatically add physics bodies to world.
+   // p.background(220, 180, 200);
+    p.background(background_color) 
+   
+   init_physics();  //should automatically add physics bodies to world.
 }
 
 function p5_draw(p) { 
     p.clear();
-    p.background(220, 180, 200);
-  
+    //p.background(220, 180, 200);
+    
+    p.background(background_color)
+
   update_clock(p);
   update_camera_position(p);
  
-  draw_grid(p);
-  draw_islands_from_matter(p);
+ // draw_grid(p);
+ // draw_islands_from_matter(p);
+}
+
+function load_init() {
+
+
+    //must reset page first. 
+
+
+console.log("INSIDE LOAD_INIT")
+
+    var main_title =  document.getElementById("main_title")
+    console.log("MAIN TITLE: ", main_title)
+    
+    main_title.remove() ;
+    
+    init()
+    
+}
+
+function pre_init() {
+
+   // let div = document.createElement("div")
+   // div.id = "main_div"
+
+    let title = document.createElement("img")
+    title.id = "main_title"
+    title.src = "images/main_title.png"
+
+    title.addEventListener("click" , function() { load_init() } )
+
+
+    document.body.appendChild(title)
+
+
 }
 
 
 function init() {
 
-    let page_elements = [ title(),  clock(), p5_canvas_container(), menu(), main_text_area(), camera(),] ; 
+    let page_elements = [ menu(),  p5_canvas_container(), main_text_area(),  clock(), camera(),] ; 
     page_elements.forEach( element => document.body.appendChild(element)) ; 
 
     let sketch = function(p) {

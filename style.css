@@ -1,60 +1,187 @@
 
+body {
+
+   /* background-color: #969495; */
+   background-color: #BEBEBE;
+
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#main_title {
+
+    width: 45%;
+
+    position: absolute;
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    margin: auto;
+}
+
+/*
+#title {
+
+    color: salmon;
+} */
+
+#title_line_1 {
+
+    color: #1922e2;
+    filter: blur(1px);
+    /*
+    font-size: xx-large; */
+}
+
+
+#title_line_2 {
+    color: #dbe219;
+    /*
+    font-size: x-large; */
+    filter: blur(8px);
+} 
 
 #clock {
-    font-size: small;
+/*    font-size: small; */
+    color: black;
+    font-size: 39px;
+
+    position: absolute;
+    bottom: 5px;
+/*    right: 120px; */
+    right: 20%; 
+    
    
    /* float: left; */
 }
 
+/* right: 1%; 
+   width: 10%; */
 #camera {
    /* float: right; */
    position: absolute;
-   right: 1%; 
+   right: 5px; 
+   width: 120px;
 }
 
+
+#menu {
+
+    position: absolute;
+    top: 7px ; 
+}
+
+
 .menu_button {
-     background-color: ivory;
      
+    /*background-color: ivory;*/
+
+/*    background-color: white; */
+
+    background-color: rgba(255,255,255,0.28);
+
+     border: none;
+     border-radius: 9px;
+     font-size: 12px;
+     /*
+    padding: px 30px;
+*/
+    padding-top: 9px ;
+    padding-bottom: 9px;
+
+     color: #dbe219;
+    /*opacity: 0.28; */
+    /*color: rgba(219,226,25,1);*/
+
+    margin-top: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+
  }
- .menu_button:hover {
-     background-color: aquamarine;
- }
+
+
+ .menu_button:hover {  
+    /* background-color: aquamarine; 
+    background-color: rgba(255,255,255,0.40);
+    */
+ } 
+
+ /*
  .menu_button:active {
      background-color: tomato;
- }
+ } */
+
+
  /*
  .menu_button:focus {
      background-color: yellowgreen;
  }*/
 
  .menu_button[name="current_menu_button"] {
-     background-color: hotpink;
+     /* background-color: hotpink; */
+     background-color: rgba(255,255,255,0.40);
+
+
  }
 
-
-
 .essay {
-    background-color: antiquewhite;
-    border: 3px solid; 
-    border-color: yellow;
+   /* background-color: antiquewhite; */
+   background-color: transparent;
+   
+    border: 1pt solid; 
+    border-color: lightgray;
     resize: none;
-    
+
+    font-size: 16px;
+    color: #1922e2;
+
+    font-style: normal;
+
+    position: absolute;
+    top: 80px;
+   
+   /* right: 120px; */
+    right: 20%; 
+
+   /* width:  27em; 
+    height: 30em; */
+    width: 30%;
+    height: 70%;
+
+
 }
 
 .essay_title {
+   
+    width: 450px;
+
+    position: absolute;
+    top: 80px; 
+    left: 10px; 
+
+   /*
+    width: 50%; */
+   
+   /*
     color: transparent;
      text-shadow: 0 0 5px rgba(0,0,0,0.5);
      text-shadow: 0 0 5px greenyellow;
 
      font-size: 50px;
 
+     
      -webkit-transition: text-shadow 1s linear;
      -moz-transition: text-shadow 1s linear;
      -ms-transition: text-shadow 1s linear;
      -o-transition: text-shadow 1s linear;
      transition: text-shadow 1s linear;
+
+     */
 }
 
+
+/*
 .essay_text {
 
     width: 350px;
@@ -71,4 +198,10 @@
     border: 3px solid; 
     border-color: yellow;
 
-}
+    font-size: 16pt;
+    color: #1922e2;
+
+    font-style: normal;
+
+
+}*/
