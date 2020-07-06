@@ -2,7 +2,8 @@
 body {
 
    /* background-color: #969495; */
-   background-color: #BEBEBE;
+   /* background-color: #7F7F7F; */
+   background-color: #817F80;
 
     font-family: 'Times New Roman', Times, serif;
 }
@@ -49,7 +50,7 @@ body {
     position: absolute;
     bottom: 5px;
 /*    right: 120px; */
-    right: 20%; 
+    right: 10%; 
     
    
    /* float: left; */
@@ -134,6 +135,8 @@ body {
     resize: none;
 
     font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+
     color: #1922e2;
 
     font-style: normal;
@@ -142,12 +145,12 @@ body {
     top: 80px;
    
    /* right: 120px; */
-    right: 20%; 
+    right: 10%; 
 
    /* width:  27em; 
     height: 30em; */
-    width: 30%;
-    height: 70%;
+    width: 42%;
+    height: 73%;
 
 
 }

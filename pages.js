@@ -237,20 +237,22 @@ function menu() {
     let menu = document.createElement("div");    menu.id = "menu"; 
 
 
+    let intro_page = template_page("intro", "images/introduction_radial.png", blurred_text)
     let blurred_page = template_page("blurred", "images/blurred_lines.png", blurred_text)
     let moles_page = template_page("moles", "images/moles_to_serpents.png", blurred_text)
     let neoliberal_page = template_page("neoliberal", "images/neoliberal_reason_and_realism.png", blurred_text)
     let working_page = template_page("working", "images/working_life_living_work.png", blurred_text)
     let children_page = template_page("children", "images/the_children_of_marx_and_zoom.png", blurred_text)
 
-    let moles_button = menu_button("moles_button", "Moles to Serpent (Introduction)", moles_page ); 
+    let intro_button = menu_button("intro_button", "Introduction", intro_page)
+    let moles_button = menu_button("moles_button", "Moles to Serpent", moles_page ); 
     let neoliberal_button = menu_button("neoliberal_button", "Neoliberal Reason and Realism", neoliberal_page );
     let blurred_button = menu_button("blurred_button", "Blurred Lines", blurred_page );
     let working_button = menu_button("working_button", "Working Life, Living Work", working_page );
-    let children_button = menu_button("children_button", "Children of Marx and Zoom: Postscript on COVID-19", children_page );
+    let children_button = menu_button("children_button", "Children of Marx and Zoom", children_page );
 
     //add buttons to menu 
-    let all_buttons = [moles_button, neoliberal_button, blurred_button, working_button, children_button] ;
+    let all_buttons = [intro_button, moles_button, neoliberal_button, blurred_button, working_button, children_button] ;
     all_buttons.forEach(   button => menu.appendChild(button) ) ; 
     return menu ; 
 }

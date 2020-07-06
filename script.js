@@ -232,7 +232,9 @@ function mouse_clicked(p) {
 }
 
 
-let background_color = "#BEBEBE"
+//let background_color = "#BEBEBE"
+//let background_color = "#7F7F7F"
+let background_color = "#817F80"
 
 function p5_setup (p){
 
