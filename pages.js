@@ -106,54 +106,11 @@ function change_page(  page  ) {
 
 /*** THE PAGES  */
 
-function template_page(name, title_src, text) {
+function template_page(name, title_src, html_src) {
     let page = document.createElement("div"); 
-  //  page.id = "blurred_page";   
+
     page.id = name + "_page";
-    /*
-    let title = document.createElement("p");
-    title.id = "blurred_page_title";   
-    title.innerHTML = "Blurred Lines"; 
-    title.className = "essay_title";
-    */
-
-   let title = document.createElement("img");
-  // title.id = "blurred_page_title";   
-    title.id = page.id + "_title"; 
- // title.src = "images/blurred_lines.png"; 
-    title.src = title_src ; 
- 
- title.className = "essay_title";
-    
-    
-    page.appendChild(title); 
-
-    let essay = document.createElement("textarea"); 
-   //essay.id = "blurred_essay" ; 
-     essay.id = name + "_essay"
-   
-    essay.className= "essay" ; 
-   // essay.innerHTML = blurred_text ; 
-    essay.innerHTML = text ; 
-
-    //essay.cols = 60 ;
-    //essay.rows = 20 ; 
-    essay.readOnly = true; 
-
-    page.appendChild(essay) ; 
-    return page ; 
-}
-
-function template_page2(name, title_src, html_src) {
-    let page = document.createElement("div"); 
-  //  page.id = "blurred_page";   
-    page.id = name + "_page";
-    /*
-    let title = document.createElement("p");
-    title.id = "blurred_page_title";   
-    title.innerHTML = "Blurred Lines"; 
-    title.className = "essay_title";
-    */
+  
    let title = document.createElement("img");   
     title.id = page.id + "_title"; 
     title.src = title_src ; 
@@ -162,23 +119,15 @@ function template_page2(name, title_src, html_src) {
  page.appendChild(title); 
 
     let essay = document.createElement("div"); 
-   //essay.id = "blurred_essay" ; 
      essay.id = name + "_essay"
     essay.className= "essay" ; 
-   // essay.innerHTML = blurred_text ; 
-
 
     let object = document.createElement("object")
     object.type = "text/html"
     object.data =  html_src
     object.className = "essay_text"
-    console.log("OBJECT: ", object)
 
-    //essay.innerHTML = object ; 
     essay.appendChild(object)
-    console.log("ESSAY DIV: ", essay)
-
-//    essay.readOnly = true; 
 
     page.appendChild(essay) ; 
     return page ; 
@@ -187,52 +136,32 @@ function template_page2(name, title_src, html_src) {
 
 
 function moles_page() { 
-    let page = document.createElement("div"); 
-    page.id = "moles_page"; 
-    let title = document.createElement("p"); 
-    title.id = "moles_page_title"; 
-    title.innerHTML = "Moles and Serpents"; 
-    page.appendChild(title); 
-    return page; 
+
+    return template_page("moles", "images/moles_to_serpents.png", "essay.html")
 }
 
 function neoliberal_page() { 
-    let page = document.createElement("div"); 
-    page.id = "neoliberal_page"; 
-    let title = document.createElement("p"); 
-    title.id = "neoliberal_page_title"; 
-    title.innerHTML = "Neoliberal Reason and Realism"; 
-    page.appendChild(title); 
-    return page; 
+    return template_page("neoliberal", "images/neoliberal_reason_and_realism.png", "essay.html")
 }
+
+function intro_page() {
+    return template_page("intro", "images/introduction_radial.png", "essay.html")
+}
+
 
 function blurred_page() {
     
-    let blurred_page = template_page2("blurred", "images/blurred_lines.png", "essay.html")
-    return blurred_page
+    return template_page("blurred", "images/blurred_lines.png", "essay.html")
 }
 
-
-
-function working_page() { 
-    let page = document.createElement("div"); 
-    page.id = "working_page"; 
-    let title = document.createElement("p"); 
-    title.id = "working_page_title"; 
-    title.innerHTML = "Working Life, Living Work"; 
-    page.appendChild(title); 
-    return page; 
+function working_page() {    
+    return template_page("working", "images/working_life_living_work.png", "essay.html")
 }
 
 
 function children_page() { 
-    let page = document.createElement("div"); 
-    page.id = "children_page"; 
-    let title = document.createElement("p"); 
-    title.id = "children_page_title"; 
-    title.innerHTML = "Children of Marx and Zoom: Postscript on COVID-19"; 
-    page.appendChild(title); 
-    return page; 
+   
+    return template_page("children", "images/the_children_of_marx_and_zoom.png", "essay.html")
 }
 
 
@@ -250,19 +179,12 @@ function menu() {
 
     let menu = document.createElement("div");    menu.id = "menu"; 
 
-    let intro_page = template_page("intro", "images/introduction_radial.png", blurred_text)
-    let blurred_page = template_page2("blurred", "images/blurred_lines.png", "essay.html")
-    let moles_page = template_page("moles", "images/moles_to_serpents.png", blurred_text)
-    let neoliberal_page = template_page("neoliberal", "images/neoliberal_reason_and_realism.png", blurred_text)
-    let working_page = template_page("working", "images/working_life_living_work.png", blurred_text)
-    let children_page = template_page("children", "images/the_children_of_marx_and_zoom.png", blurred_text)
-
-    let intro_button = menu_button("intro_button", "Introduction", intro_page)
-    let moles_button = menu_button("moles_button", "Moles to Serpent", moles_page ); 
-    let neoliberal_button = menu_button("neoliberal_button", "Neoliberal Reason and Realism", neoliberal_page );
-    let blurred_button = menu_button("blurred_button", "Blurred Lines", blurred_page );
-    let working_button = menu_button("working_button", "Working Life, Living Work", working_page );
-    let children_button = menu_button("children_button", "Children of Marx and Zoom", children_page );
+    let intro_button = menu_button("intro_button", "Introduction", intro_page())
+    let moles_button = menu_button("moles_button", "Moles to Serpent", moles_page() ); 
+    let neoliberal_button = menu_button("neoliberal_button", "Neoliberal Reason and Realism", neoliberal_page() );
+    let blurred_button = menu_button("blurred_button", "Blurred Lines", blurred_page() );
+    let working_button = menu_button("working_button", "Working Life, Living Work", working_page() );
+    let children_button = menu_button("children_button", "Children of Marx and Zoom", children_page() );
 
     //add buttons to menu 
     let all_buttons = [intro_button, moles_button, neoliberal_button, blurred_button, working_button, children_button] ;
@@ -273,14 +195,9 @@ function menu() {
 function clock() {
     let clock = document.createElement("p"); 
     clock.id = "clock"; 
-
-
-    console.log("START TIME: ", startTime)
-
-
     return clock  ;
 }
-
+/*
 function update_clock_old(p) {
     let real_hour = p.hour() ; let real_minute = p.minute() ; let real_second = p.second() ;
     
@@ -292,7 +209,7 @@ function update_clock_old(p) {
     
     let clock = document.getElementById("clock") ; 
     clock.innerHTML = displayed_time ;
-}
+}*/
 
 function update_clock(p) {
     
@@ -311,8 +228,6 @@ function update_clock(p) {
     let clock = document.getElementById("clock") ; 
     clock.innerHTML = displayed_time ;
 }
-
-
 
 
 function camera() {
