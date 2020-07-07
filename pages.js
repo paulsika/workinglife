@@ -256,6 +256,15 @@ function camera() {
     return camera_div 
 }
 
+function sliding_camera() {
+
+    let sliding_camera = document.createElement("img")
+    sliding_camera.id = "sliding_camera"
+    sliding_camera.src = "images/camera_left_side.png"
+    
+    return sliding_camera
+}
+
 
 var rotation_degree = 0 ; 
 function rotate_camera() {
@@ -273,6 +282,19 @@ function rotate_camera() {
     let rotation = "translateY(-21px) translateX(18px) rotate(" + rotation_degree + "deg)"
     camera_head.style.transform  = rotation
 }
+
+function update_sliding_camera_position_old(p) {
+
+    let camera = document.getElementById("sliding_camera");
+   // let canvasHeight = document.getElementById("canvas").height ; 
+    let upper_bound = 70.0 ;  let lower_bound = 5.0  ;
+    var cameraY = ( p.mouseY * 90.0) / canvasHeight  ;//magic number
+
+    if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
+    if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
+
+    camera.style.top = cameraY + "%"
+} 
 
 //NOTE: work on smoother movement 
 function update_camera_position_old(p) {

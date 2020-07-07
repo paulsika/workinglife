@@ -257,8 +257,10 @@ function p5_draw(p) {
     p.background(background_color)
 
   update_clock(p);
-  update_camera_position(p);
- 
+  //update_camera_position(p);
+   // update_camera_position_old(p)
+
+   update_sliding_camera_position_old(p)
  // draw_grid(p);
  // draw_islands_from_matter(p);
 }
@@ -300,7 +302,7 @@ function pre_init() {
 
 function init() {
 
-    let page_elements = [ menu(),  p5_canvas_container(), main_text_area(),  clock(), camera(),] ; 
+    let page_elements = [ menu(),  p5_canvas_container(), main_text_area(),  clock(), camera(), sliding_camera()] ; 
     page_elements.forEach( element => document.body.appendChild(element)) ; 
 
     let sketch = function(p) {
