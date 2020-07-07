@@ -227,8 +227,12 @@ function update_click_count (p)  {
 }
 
 function mouse_clicked(p) {
-    draw_islands_from_matter(p)
-    update_click_count(p); 
+    //draw_islands_from_matter(p)
+    
+    //update_click_count(p); 
+
+    rotate_camera()
+
 }
 
 

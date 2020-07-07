@@ -6,15 +6,16 @@ Forms of Control in Johannesburg’s New Workplaces
 
 var startTime = performance.now()
 
+/*
 function title_old () {
 
     let title = document.createElement("p"); 
     title.id = "title"; 
     title.innerHTML = "&quot;Working Life, Living Work&quot; - by Riley Grant &amp; William Shoki" ; 
     return title ;     
-}
+}*/
 
-
+/*
 function title_old2() {
 
 
@@ -39,7 +40,7 @@ function title_old2() {
     title.appendChild(line2)
 
     return title ;     
-}
+} */
 
 function title() {
     let title = document.createElement("img")
@@ -128,12 +129,10 @@ function template_page(name, title_src, html_src) {
     object.className = "essay_text"
 
     essay.appendChild(object)
-
     page.appendChild(essay) ; 
+
     return page ; 
 }
-
-
 
 function moles_page() { 
 
@@ -230,10 +229,49 @@ function update_clock(p) {
 }
 
 
-function camera() {
+function camera_old() {
     let camera = document.createElement("img"); 
     camera.id = "camera";   camera.src = "images/camera.png"; 
     return camera ; 
+}
+
+function camera() {
+
+    let camera_div = document.createElement("div")
+    camera_div.id = "camera"
+
+    let camera_head = document.createElement("img")
+    camera_head.id = "camera_head"
+   // camera_head.src = "images/camera_head_new.png"
+   camera_head.src = "images/camera_head_new_centered2.png"
+   camera_head.style.transform = "translateY(-21px) translateX(18px)"
+
+    let camera_base = document.createElement("img")
+    camera_base.id = "camera_base"
+    camera_base.src = "images/camera_base_new.png"
+
+    camera_div.appendChild(camera_head)
+    camera_div.appendChild(camera_base) 
+
+    return camera_div 
+}
+
+
+var rotation_degree = 0 ; 
+function rotate_camera() {
+
+    let camera_head = document.getElementById("camera_head")
+//    console.log("CAMERA HEAD:, ", camera_head)
+
+    rotation_degree -= 10; 
+
+ //   camera_head.style.transformOrigin="0 0"
+   // camera_head.style.transformOrigin="bottom center"
+   //  camera_head.style.top = "1px"
+   // camera_head.style.right = "17px"
+
+    let rotation = "translateY(-21px) translateX(18px) rotate(" + rotation_degree + "deg)"
+    camera_head.style.transform  = rotation
 }
 
 //NOTE: work on smoother movement 
