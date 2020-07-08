@@ -255,22 +255,61 @@ function draw_flock(p) {
 }
 
 function draw_lines_from_flock(p) {
-
     //  let vertices = island_bodies.map( a_body => a_body.position) ;
     //let boid_pairs = _.chunk(flock, 2)
-
     let boid_positions = flock.map(a_boid => a_boid.position)
     let position_pairs = _.chunk(boid_positions, 2)
+    
     p.strokeWeight(0.5)
-
-
-//SHUFFLE 
 
     for (let pair of position_pairs) {
 
         p.line(pair[0].x, pair[0].y, pair[1].x, pair[1].y)
     }
+}
 
+function draw_triangles_from_flock(p) {
+    //  let vertices = island_bodies.map( a_body => a_body.position) ;
+    //let boid_pairs = _.chunk(flock, 2)
+    let boid_positions = flock.map(a_boid => a_boid.position)
+    let position_pairs = _.chunk(boid_positions, 3)
+    
+    p.strokeWeight(0.5)
+    p.noFill()
+
+    for (let pair of position_pairs) {
+
+        if (pair.length == 3) {
+        p.triangle(pair[0].x, pair[0].y, pair[1].x, pair[1].y, pair[2].x, pair[2].y)
+        }
+    }
+}
+
+
+function draw_quads_from_flock(p) {
+    let boid_positions = flock.map(a_boid => a_boid.position)
+    let position_pairs = _.chunk(boid_positions, 4)
+    
+    p.strokeWeight(1)
+    p.noFill()
+    
+    for (let pair of position_pairs) {
+
+        p.quad(pair[0].x, pair[0].y, pair[1].x, pair[1].y, pair[2].x, pair[2].y, pair[3].x, pair[3].y)
+    }
+}
+
+function draw_beziers_from_flock(p) {
+    let boid_positions = flock.map(a_boid => a_boid.position)
+    let position_pairs = _.chunk(boid_positions, 4)
+    
+    p.strokeWeight(1)
+    p.noFill()
+    p.stroke(240)
+    for (let pair of position_pairs) {
+
+        p.bezier(pair[0].x, pair[0].y, pair[1].x, pair[1].y, pair[2].x, pair[2].y, pair[3].x, pair[3].y)
+    }
 }
 
 //let background_color = "#BEBEBE"
@@ -304,7 +343,11 @@ function p5_draw(p) {
     update_sliding_camera_position_old(p)
 
     draw_flock(p)
-    draw_lines_from_flock(p)
+  draw_lines_from_flock(p)
+  // draw_triangles_from_flock(p)
+   //lines and beziers together is interesting. 
+    //draw_beziers_from_flock(p)
+   // draw_quads_from_flock(p)
     // if (Math.floor(p.second() % 3) == 0) {
 
     // }
