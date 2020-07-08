@@ -260,7 +260,7 @@ function sliding_camera() {
 
     let sliding_camera = document.createElement("img")
     sliding_camera.id = "sliding_camera"
-    sliding_camera.src = "images/camera_left_side.png"
+    sliding_camera.src = "images/camera_left_side_cut.png"
     
     return sliding_camera
 }

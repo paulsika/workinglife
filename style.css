@@ -41,16 +41,10 @@ body {
 #sliding_camera {
 
     position: absolute ;
-    left: 5px ;
+    left: 0px ; 
+   /* left: -60px; */
     top: 20px ; 
-    width: 120px ;
-}
-
-#annoying_camera {
-
-    position: absolute ; 
-    top: 200px ; 
-    width: 120px; 
+    width: 70px ;
 
 
 }
@@ -188,69 +182,6 @@ outline-style: none;
     height: 100%;
 }
 
-/*
-.essay_text {
-
-    width: 350px;
-    height: 400px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-    background: transparent;
-
-    position: absolute;
-    top: 20%;
-    right: 41%;
-
-    border: 3px solid; 
-    border-color: yellow;
-
-    font-size: 16pt;
-    color: #1922e2;
-
-    font-style: normal;
-
-
-}*/
-
-/*
-#face {
-   
-    width: 100%;    
-}
-.eye {
-    border-radius: 50%; 
-    height: 30px; 
-    width: 30px; 
-}
-
-#left_eye  {
-
-    background-color: aqua;
-}
-
-#right_eye {
-    background-color: aquamarine;
-}*/
-
-/*
-.move_area{
-    width: 100vw;
-    height: 100vh;
-    padding: 10% 45%;
-
-
-  }*/
-
-  /*
-  .move_area{
-
-    width: 100vw;
-    height: 100vh;
-   padding: 10% 45%; 
-    
-
-  } */
 
 
   .face {
@@ -267,8 +198,11 @@ outline-style: none;
    /* border: 3px solid green; */
     
     position: absolute;
-    top: 70px ; 
-    left: 40%; 
+  /*  top: 70px ; 
+  left: 40%; 
+  */
+    bottom: 6px;
+    right: 90px; 
 
   }
   .eye {

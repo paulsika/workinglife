@@ -263,6 +263,9 @@ function draw_lines_from_flock(p) {
     let position_pairs = _.chunk(boid_positions, 2)
     p.strokeWeight(0.5)
 
+
+//SHUFFLE 
+
     for (let pair of position_pairs) {
 
         p.line(pair[0].x, pair[0].y, pair[1].x, pair[1].y)
@@ -341,7 +344,7 @@ function pre_init() {
 
 function init() {
 
-    let page_elements = [menu(), p5_canvas_container(), main_text_area(), clock(), camera(), sliding_camera(), annoying_camera(), eyes()];
+    let page_elements = [menu(), p5_canvas_container(), main_text_area(), clock(), sliding_camera(), eyes()];
     page_elements.forEach(element => document.body.appendChild(element));
 
     //eyes_follow_cursor()
