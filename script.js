@@ -261,7 +261,12 @@ function p5_draw(p) {
    // update_camera_position_old(p)
 
    update_sliding_camera_position_old(p)
- // draw_grid(p);
+
+   // if (Math.floor(p.second() % 3) == 0) {
+
+   // }
+ 
+   // draw_grid(p);
  // draw_islands_from_matter(p);
 }
 
@@ -302,9 +307,13 @@ function pre_init() {
 
 function init() {
 
-    let page_elements = [ menu(),  p5_canvas_container(), main_text_area(),  clock(), camera(), sliding_camera()] ; 
+    let page_elements = [ menu(),  p5_canvas_container(), main_text_area(),  clock(), camera(), sliding_camera(), annoying_camera(), eyes()] ; 
     page_elements.forEach( element => document.body.appendChild(element)) ; 
 
+
+    //eyes_follow_cursor()
+    eyes_follow_cursor_jquery()
+    
     let sketch = function(p) {
         p.setup = function() { p5_setup(p); }
         p.draw =  function() { p5_draw(p); }

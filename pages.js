@@ -265,6 +265,14 @@ function sliding_camera() {
     return sliding_camera
 }
 
+function annoying_camera() {
+
+    let camera = document.createElement("img")
+    camera.id = "annoying_camera"
+    camera.src = "images/camera_left_side.png"
+    return camera 
+}
+
 
 var rotation_degree = 0 ; 
 function rotate_camera() {
@@ -296,6 +304,41 @@ function update_sliding_camera_position_old(p) {
     camera.style.top = cameraY + "%"
 } 
 
+
+//var fade_out = true 
+var fade_op = "out"
+var fade_step = 0.1
+var current_opacity = 1.0 
+
+function update_annoying_camera_position(p) {
+
+    let camera = document.getElementById("annoying_camera") 
+
+
+    if (current_opacity <= 0) {
+        fade_op = "in"
+    }
+
+    if (current_opacity >= 1 ) {
+        fade_op = "out"
+    }
+
+    if (fade_op == "out" ) {
+
+        current_opacity -= fade_step
+        
+        
+    }
+
+    if (fade_op == "in") {
+        current_opacity += fade_step
+    
+        
+   
+    }
+    camera.style.opacity = current_opacity.toString() 
+}
+
 //NOTE: work on smoother movement 
 function update_camera_position_old(p) {
 
@@ -323,3 +366,89 @@ function update_camera_position(p) {
     //camera.style.top = cameraY + "%"
 
 } 
+
+
+function eyes() {
+
+    let move_area = document.createElement("section")
+    move_area.className = "move_area"
+
+    let face = document.createElement("div")
+    face.id = "face"
+    face.className = "face"
+
+    let left_eye = document.createElement("div")
+    left_eye.id = "left_eye"
+    left_eye.className = "eye"
+
+    let right_eye = document.createElement("div")
+    right_eye.id = "right_eye"
+    right_eye.className = "eye"
+
+    face.appendChild(left_eye)
+    face.appendChild(right_eye)
+   // move_area.appendChild(face)
+
+    return face
+}
+
+function eyes_follow_cursor_jquery() {
+
+    $("body").mousemove(function(event) {
+        var eye = $(".eye");
+        var x = (eye.offset().left) + (eye.width() / 2);
+        var y = (eye.offset().top) + (eye.height() / 2);
+        var rad = Math.atan2(event.pageX - x, event.pageY - y);
+        var rot = (rad * (180 / Math.PI) * -1) + 180;
+        eye.css({
+          '-webkit-transform': 'rotate(' + rot + 'deg)',
+          '-moz-transform': 'rotate(' + rot + 'deg)',
+          '-ms-transform': 'rotate(' + rot + 'deg)',
+          'transform': 'rotate(' + rot + 'deg)'
+        });
+      });
+}
+
+
+function eyes_follow_cursor() {
+
+    document.addEventListener("mousemove", function(event) {
+
+     /*   var eye = $(".eye");
+        var x = (eye.offset().left) + (eye.width() / 2);
+        var y = (eye.offset().top) + (eye.height() / 2);
+        var rad = Math.atan2(event.pageX - x, event.pageY - y);
+        var rot = (rad * (180 / Math.PI) * -1) + 180; */
+
+        var eyes = document.getElementsByClassName("eye")
+
+       // console.log("EYES:", eyes)
+
+        for (let eye of eyes) {
+            console.log(eye.id);
+        
+        
+       // var x = eye.offsetLeft + (eye.style.width / 2)
+        var x = eye.style.left + (eye.style.width / 2)
+      //  var y = eye.offsetTop + (eye.style.height / 2)
+      var y = eye.style.top + (eye.style.height / 2)
+        var rad = Math.atan2(event.pageX - x, event.pageY - y);
+        var rot = (rad * (180 / Math.PI) * -1) + 180; 
+
+        /*
+            eye.css({
+    '-webkit-transform': 'rotate(' + rot + 'deg)',
+    '-moz-transform': 'rotate(' + rot + 'deg)',
+    '-ms-transform': 'rotate(' + rot + 'deg)',
+    'transform': 'rotate(' + rot + 'deg)'
+  });
+
+        */
+
+       eye.style.transform = 'rotate(' + rot + 'deg)'
+        
+        
+        }
+
+    });
+}

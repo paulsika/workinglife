@@ -43,7 +43,16 @@ body {
     position: absolute ;
     left: 5px ;
     top: 20px ; 
-    width: 120px 
+    width: 120px ;
+}
+
+#annoying_camera {
+
+    position: absolute ; 
+    top: 200px ; 
+    width: 120px; 
+
+
 }
 
  #camera {
@@ -203,3 +212,86 @@ outline-style: none;
 
 
 }*/
+
+/*
+#face {
+   
+    width: 100%;    
+}
+.eye {
+    border-radius: 50%; 
+    height: 30px; 
+    width: 30px; 
+}
+
+#left_eye  {
+
+    background-color: aqua;
+}
+
+#right_eye {
+    background-color: aquamarine;
+}*/
+
+/*
+.move_area{
+    width: 100vw;
+    height: 100vh;
+    padding: 10% 45%;
+
+
+  }*/
+
+  /*
+  .move_area{
+
+    width: 100vw;
+    height: 100vh;
+   padding: 10% 45%; 
+    
+
+  } */
+
+
+  .face {
+
+   /* position: absolute;
+    top: 170px; 
+    left: 200px; */
+   /* width: 100%; */
+
+    margin: auto; 
+   /* width: 10%; */
+   width: 60px; 
+   
+   /* border: 3px solid green; */
+    
+    position: absolute;
+    top: 70px ; 
+    left: 40%; 
+
+  }
+  .eye {
+   
+    position: relative;
+    display: inline-block;
+   
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background: #CCC;
+
+    
+
+   /* margin: auto;  */
+  }
+  .eye:after { /*pupil*/
+    position: absolute;
+    bottom: 17px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    content: " ";
+  }
