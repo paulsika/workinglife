@@ -90,8 +90,8 @@ class Boid {
 
   cohesion(boids) {
     
-    //let perceptionRadius = 100;
-    let perceptionRadius = this.p.random(50, 150)
+    let perceptionRadius = 100;
+    //let perceptionRadius = this.p.random(50, 150)
 
     let steering = this.p.createVector();
     let total = 0;
@@ -142,11 +142,11 @@ class Boid {
   }
 
   show() {
-   // this.p.strokeWeight(6);
-   this.p.strokeWeight(this.p.random(3,10)) 
+    this.p.strokeWeight(6);
+   //this.p.strokeWeight(this.p.random(3,10)) 
    
-   //this.p.stroke(220);
-    this.p.stroke(this.p.random(200, 255))
+   this.p.stroke(220);
+   // this.p.stroke(this.p.random(200, 255))
 
     this.p.point(this.position.x, this.position.y);
   }
