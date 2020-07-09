@@ -49,7 +49,6 @@ function title() {
     return title 
 }
 
-
 function p5_canvas_container() {
 
     let container = document.createElement("div"); 
@@ -68,7 +67,6 @@ function main_text_area() {
     child2.innerHTML = "dummy button";
 
     area.appendChild(child1); area.appendChild(child2);
-
     return area ; 
 }
 
@@ -210,7 +208,7 @@ function update_clock_old(p) {
     clock.innerHTML = displayed_time ;
 }*/
 
-function update_clock(p) {
+function update_clock_distorted(p) {
     
     let elapsed_time = Math.floor( (performance.now() - startTime) / 1000 ) 
    // console.log("ELAPSED TIME", elapsed_time)
@@ -228,7 +226,30 @@ function update_clock(p) {
     clock.innerHTML = displayed_time ;
 }
 
+function update_clock(p) {
+    
+    let seconds = Math.floor( (performance.now() - startTime) / 1000 ) 
+   // console.log("ELAPSED TIME", elapsed_time)
+    
+    let elapsed_second = seconds % 60
+    //console.log("ELAPSED SECONDS: ", elapsed_second)
+  //  let elapsed_minute = Math.floor(elapsed_time / 60 )
+    let elapsed_minute = Math.floor((seconds  % 3600) / 60 )
 
+    //let elapsed_hour = Math.floor(elapsed_time / 3600)
+    let elapsed_hour = Math.floor((seconds % 86400) / 3600 )
+
+    let displayed_time = elapsed_hour.toString().padStart(2,'0') + " : " 
+                        +  elapsed_minute.toString().padStart(2,'0') + " : "
+                         + elapsed_second.toString().padStart(2,'0') ;
+    
+    let clock = document.getElementById("clock") ; 
+    clock.innerHTML = displayed_time ;
+}
+
+
+
+/*
 function camera_old() {
     let camera = document.createElement("img"); 
     camera.id = "camera";   camera.src = "images/camera.png"; 
@@ -254,7 +275,7 @@ function camera() {
     camera_div.appendChild(camera_base) 
 
     return camera_div 
-}
+}*/
 
 function sliding_camera() {
 
@@ -265,6 +286,7 @@ function sliding_camera() {
     return sliding_camera
 }
 
+/*
 function annoying_camera() {
 
     let camera = document.createElement("img")
@@ -272,24 +294,7 @@ function annoying_camera() {
     camera.src = "images/camera_left_side.png"
     return camera 
 }
-
-
-var rotation_degree = 0 ; 
-function rotate_camera() {
-
-    let camera_head = document.getElementById("camera_head")
-//    console.log("CAMERA HEAD:, ", camera_head)
-
-    rotation_degree -= 10; 
-
- //   camera_head.style.transformOrigin="0 0"
-   // camera_head.style.transformOrigin="bottom center"
-   //  camera_head.style.top = "1px"
-   // camera_head.style.right = "17px"
-
-    let rotation = "translateY(-21px) translateX(18px) rotate(" + rotation_degree + "deg)"
-    camera_head.style.transform  = rotation
-}
+*/
 
 function update_sliding_camera_position_old(p) {
 
@@ -305,41 +310,7 @@ function update_sliding_camera_position_old(p) {
 } 
 
 
-//var fade_out = true 
-var fade_op = "out"
-var fade_step = 0.1
-var current_opacity = 1.0 
-
-function update_annoying_camera_position(p) {
-
-    let camera = document.getElementById("annoying_camera") 
-
-
-    if (current_opacity <= 0) {
-        fade_op = "in"
-    }
-
-    if (current_opacity >= 1 ) {
-        fade_op = "out"
-    }
-
-    if (fade_op == "out" ) {
-
-        current_opacity -= fade_step
-        
-        
-    }
-
-    if (fade_op == "in") {
-        current_opacity += fade_step
-    
-        
-   
-    }
-    camera.style.opacity = current_opacity.toString() 
-}
-
-//NOTE: work on smoother movement 
+/*
 function update_camera_position_old(p) {
 
     let camera = document.getElementById("camera");
@@ -351,8 +322,9 @@ function update_camera_position_old(p) {
     if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
 
     camera.style.top = cameraY + "%"
-} 
+} */
 
+/*
 function update_camera_position(p) {
 
     let camera = document.getElementById("camera");
@@ -365,7 +337,7 @@ function update_camera_position(p) {
 
     //camera.style.top = cameraY + "%"
 
-} 
+} */
 
 
 function eyes() {
@@ -407,48 +379,4 @@ function eyes_follow_cursor_jquery() {
           'transform': 'rotate(' + rot + 'deg)'
         });
       });
-}
-
-
-function eyes_follow_cursor() {
-
-    document.addEventListener("mousemove", function(event) {
-
-     /*   var eye = $(".eye");
-        var x = (eye.offset().left) + (eye.width() / 2);
-        var y = (eye.offset().top) + (eye.height() / 2);
-        var rad = Math.atan2(event.pageX - x, event.pageY - y);
-        var rot = (rad * (180 / Math.PI) * -1) + 180; */
-
-        var eyes = document.getElementsByClassName("eye")
-
-       // console.log("EYES:", eyes)
-
-        for (let eye of eyes) {
-            console.log(eye.id);
-        
-        
-       // var x = eye.offsetLeft + (eye.style.width / 2)
-        var x = eye.style.left + (eye.style.width / 2)
-      //  var y = eye.offsetTop + (eye.style.height / 2)
-      var y = eye.style.top + (eye.style.height / 2)
-        var rad = Math.atan2(event.pageX - x, event.pageY - y);
-        var rot = (rad * (180 / Math.PI) * -1) + 180; 
-
-        /*
-            eye.css({
-    '-webkit-transform': 'rotate(' + rot + 'deg)',
-    '-moz-transform': 'rotate(' + rot + 'deg)',
-    '-ms-transform': 'rotate(' + rot + 'deg)',
-    'transform': 'rotate(' + rot + 'deg)'
-  });
-
-        */
-
-       eye.style.transform = 'rotate(' + rot + 'deg)'
-        
-        
-        }
-
-    });
-}
+} 

@@ -220,20 +220,17 @@ function draw_grid(p) {
     draw_horizontal_lines_from_matter(p)
 }
 
+/*
 var click_count = 0;
 function update_click_count(p) {
     click_count += 1;
     console.log("new_click_count: ", click_count);
-}
+}*/
 
-function mouse_clicked(p) {
-    //draw_islands_from_matter(p)
 
-    //update_click_count(p); 
 
-    rotate_camera()
 
-}
+
 
 
 const flock = [];
@@ -264,8 +261,10 @@ function draw_lines_from_flock(p) {
 
     for (let pair of position_pairs) {
 
+        if (pair.length == 2) {
         p.line(pair[0].x, pair[0].y, pair[1].x, pair[1].y)
     }
+}
 }
 
 function draw_triangles_from_flock(p) {
@@ -312,6 +311,37 @@ function draw_beziers_from_flock(p) {
     }
 }
 
+
+/*
+function is_near( x1, y1, x2, y2, dist) {
+
+    let distance = p.dist(x1, y1, x2, y2)
+    console.log("DISTANCE: ", distance)
+
+    return  distance <= dist
+}
+
+function near_points(p) {
+
+    console.log("NEAR POINTS")
+
+    let boid_positions = flock.map(a_boid => a_boid.position)
+
+    let points = boid_positions.filter(is_near(p.mouseX, p.mouseY,))
+
+    console.log("POINTS: ", points)
+}
+*/
+
+function mouse_clicked(p) {
+    //draw_islands_from_matter(p)
+
+    //update_click_count(p); 
+
+   // near_points(p)
+
+}
+
 //let background_color = "#BEBEBE"
 //let background_color = "#7F7F7F"
 let background_color = "#817F80"
@@ -322,12 +352,9 @@ function p5_setup(p) {
     canvas.id("canvas"); //using p5 own function   
     // p.background(220, 180, 200);
     p.background(background_color)
-
+    update_sliding_camera_position_old(p)
     //  init_physics();  //should automatically add physics bodies to world.
-
     setup_flock(p)
-
-
 }
 
 function p5_draw(p) {
@@ -337,20 +364,15 @@ function p5_draw(p) {
     p.background(background_color)
 
     update_clock(p);
-    //update_camera_position(p);
-    // update_camera_position_old(p)
 
     update_sliding_camera_position_old(p)
 
     draw_flock(p)
-  draw_lines_from_flock(p)
+     draw_lines_from_flock(p)
   // draw_triangles_from_flock(p)
-   //lines and beziers together is interesting. 
-    //draw_beziers_from_flock(p)
+   //lines and beziers together is interesting but too busy
+    //draw_beziers_from_flock(p) 
    // draw_quads_from_flock(p)
-    // if (Math.floor(p.second() % 3) == 0) {
-
-    // }
 
     // draw_grid(p);
     // draw_islands_from_matter(p);
@@ -358,19 +380,10 @@ function p5_draw(p) {
 
 function load_init() {
 
-
     //must reset page first. 
-
-
-    console.log("INSIDE LOAD_INIT")
-
     var main_title = document.getElementById("main_title")
-    console.log("MAIN TITLE: ", main_title)
-
     main_title.remove();
-
     init()
-
 }
 
 function pre_init() {
@@ -380,7 +393,6 @@ function pre_init() {
     title.src = "images/main_title.png"
 
     title.addEventListener("click", function () { load_init() })
-
     document.body.appendChild(title)
 }
 
@@ -394,13 +406,15 @@ function init() {
     eyes_follow_cursor_jquery()
 
     let sketch = function (p) {
+        
         p.setup = function () { p5_setup(p); }
         p.draw = function () { p5_draw(p); }
-        p.mouseClicked = function () { mouse_clicked(p); }
-        // p.mouseMoved = function() {draw_islands_from_matter(p);}
+        p.mouseClicked = function () { mouse_clicked(p); 
+        
+        //    update_sliding_camera_position_old(p) 
+        }
     };
 
     new p5(sketch, document.getElementById('p5_canvas_container'));
-
     change_page(blurred_page());
 }
