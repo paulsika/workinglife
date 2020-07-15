@@ -408,7 +408,9 @@ function init() {
     let sketch = function (p) {
         
         p.setup = function () { p5_setup(p); }
-        p.draw = function () { p5_draw(p); }
+       
+       // p.draw = function () { p5_draw(p); }
+       
         p.mouseClicked = function () { mouse_clicked(p); 
         
         //    update_sliding_camera_position_old(p) 
