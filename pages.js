@@ -105,7 +105,76 @@ function change_page(  page  ) {
 
 /*** THE PAGES  */
 
-function template_page(name, title_src, html_src) {
+function template_page_old2(name, title_src, html_src) {
+    let page = document.createElement("div"); 
+
+    page.id = name + "_page";
+    page.className = "essay_page"
+  
+   let title = document.createElement("img");   
+    title.id = page.id + "_title"; 
+    title.src = title_src ; 
+ title.className = "essay_title";
+
+    page.appendChild(title); 
+
+    let essay_box = document.createElement("div"); 
+     essay_box.id = name + "_essay"
+    essay_box.className= "essay_box" ; 
+
+    let essay_text = document.createElement("div")
+   // essay_text.type = "text/html"
+    //essay_text.data =  html_src
+   // essay_text.appendChild(html_src)
+    essay_text.innerHTML = html_src  
+   essay_text.className = "essay_text"
+    essay_box.appendChild(essay_text) 
+      
+    page.appendChild(essay_box) ; 
+    return page ; 
+}
+
+function template_page(name, title_src, html_src, ref_src) {
+    
+    
+    let page = document.createElement("div"); 
+    page.id = name + "_page";
+    page.className = "essay_page"
+  
+    let essay_area = document.createElement("div")
+    essay_area.className = "essay_area"
+
+   let title = document.createElement("img");   
+    title.id = page.id + "_title"; 
+    title.src = title_src ; 
+    title.className = "essay_title";
+
+    let essay_box = document.createElement("div"); 
+     essay_box.id = name + "_essay"
+    essay_box.className= "essay_box" ; 
+
+    let essay_text = document.createElement("div")
+    essay_text.innerHTML = html_src  
+    essay_text.className = "essay_text"
+
+
+    let essay_references = document.createElement("div")
+    essay_references.className = "essay_references"
+    essay_references.innerHTML = ref_src
+
+
+    essay_box.appendChild(essay_text)
+    essay_box.appendChild(essay_references)
+
+    essay_area.appendChild(title)
+    essay_area.appendChild(essay_box)
+
+    page.appendChild(essay_area)
+
+    return page ; 
+}
+
+function template_page_iframe(name, title_src, html_src) {
     let page = document.createElement("div"); 
 
     page.id = name + "_page";
@@ -117,18 +186,39 @@ function template_page(name, title_src, html_src) {
 
  page.appendChild(title); 
 
-    let essay = document.createElement("div"); 
-     essay.id = name + "_essay"
-    essay.className= "essay" ; 
+    let essay_box = document.createElement("div"); 
+     essay_box.id = name + "_essay"
+    essay_box.className= "essay_box" ; 
 
-    let object = document.createElement("object")
-    object.type = "text/html"
-    object.data =  html_src
-    object.className = "essay_text"
+    /*
+    let essay_text = document.createElement("iframe")
+   // essay_text.type = "text/html"
+    essay_text.src =  html_src
+    essay_text.className = "essay_text" */
 
-    essay.appendChild(object)
-    page.appendChild(essay) ; 
 
+    let essay_iframe = document.createElement("iframe")
+    // essay_text.type = "text/html"
+    essay_iframe.src = html_src 
+   // essay_iframe.className = "essay_text_iframe"
+    console.log("IFRAME", essay_iframe)
+    //let essay_text = essay_iframe.contentWindow.document.getElementById(essay_box.id)
+    //console.log("essay text", essay_text)
+
+    //essay_text.src =  html_src
+    //let essay_text = essay_iframe.contentWindow.document
+     
+   // essay_text.className = "essay_text"
+   
+    essay_box.appendChild(essay_iframe) 
+
+    /* let essay_text = $("#" + essay_box.id).load(html_src)
+    essay_text.className = "essay_text"
+    console.log("ESSAY TEXT", essay_text) */
+    
+   // essay_box.appendChild(essay_text) 
+    
+    page.appendChild(essay_box) ; 
     return page ; 
 }
 
@@ -148,7 +238,10 @@ function intro_page() {
 
 function blurred_page() {
     
-    return template_page("blurred", "images/blurred_lines.png", "essay.html")
+//    return template_page("blurred", "images/blurred_lines.png", "essay.html")
+    //return template_page("blurred", "images/blurred_lines.png", "blurred_lines_text.html")
+
+    return template_page("blurred", "images/blurred_lines.png", blurred_lines_text, blurred_lines_references)
 }
 
 function working_page() {    

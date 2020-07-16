@@ -227,12 +227,6 @@ function update_click_count(p) {
     console.log("new_click_count: ", click_count);
 }*/
 
-
-
-
-
-
-
 const flock = [];
 
 function setup_flock(p) {
@@ -367,8 +361,9 @@ function p5_draw(p) {
 
     update_sliding_camera_position_old(p)
 
-    draw_flock(p)
-     draw_lines_from_flock(p)
+   draw_flock(p)
+   draw_lines_from_flock(p) 
+  
   // draw_triangles_from_flock(p)
    //lines and beziers together is interesting but too busy
     //draw_beziers_from_flock(p) 
@@ -399,17 +394,23 @@ function pre_init() {
 
 function init() {
 
-    let page_elements = [menu(), p5_canvas_container(), main_text_area(), clock(), sliding_camera(), eyes()];
+    let page_elements = [
+        menu(), 
+        //p5_canvas_container(), 
+        main_text_area(),
+         //clock(), 
+        // sliding_camera(),
+        //  eyes()
+        ];
     page_elements.forEach(element => document.body.appendChild(element));
 
     //eyes_follow_cursor()
-    eyes_follow_cursor_jquery()
+  //  eyes_follow_cursor_jquery()
 
     let sketch = function (p) {
         
         p.setup = function () { p5_setup(p); }
-       
-       // p.draw = function () { p5_draw(p); }
+        p.draw = function () { p5_draw(p); }
        
         p.mouseClicked = function () { mouse_clicked(p); 
         

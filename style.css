@@ -1,24 +1,21 @@
 
 body {
-
-   /* background-color: #969495; */
-   /* background-color: #7F7F7F; */
    background-color: #817F80;
 
-    font-family: 'Times New Roman', Times, serif;
+   /* font-family: 'Times New Roman', Times, serif; */   
+ /* font-family: 'Helvetica Neue', 'Helvetica' , 'Times new Roman', Arial,sans-serif;
+*/
 }
-
+/* on landing page */
 #main_title {
 
     width: 45%;
-
     position: absolute;
     top: 0; 
     bottom: 0; 
     left: 0; 
     right: 0; 
     margin: auto;
-
     cursor: pointer;
 }
 
@@ -60,17 +57,19 @@ body {
 
 }
 
+/*
 #camera_head {
 
     width: 120px;
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     top : 2px ; 
     right: 1px ;
-  /* transform: translateY(-20px); */
-   transform-origin: bottom center; 
-}
 
+   transform-origin: bottom center; 
+} */
+
+/*
 #camera_base {
 
     width: 70px; 
@@ -82,7 +81,7 @@ body {
     z-index: 0;
 
     transform: translateX(23px) translateY(-10px);
-}
+}*/
 /*
 #camera_base {
 
@@ -97,52 +96,28 @@ body {
 
 
 #menu {
-    position: absolute;
-    top: 7px ; 
+   padding-top: 10px;
 }
 
 .menu_button {
-/*    background-color: rgba(255,255,255,0.28); */
 
- transition-duration: 0.4s;
+     transition-duration: 0.4s;
     background-color: transparent;
-
     cursor: pointer;
     text-align: center;
-     /* border: none; */
-     border: 2px solid #dbe219;
-
-     border-radius: 9px;
- /*     border-color: aquamarine; */
-
-     font-size: 13px;
-     /*
-    padding: px 30px;
-*/
-
-/*
-    padding-top: 9px ;
-    padding-bottom: 9px; */
-
+    border: 2px solid #dbe219;
+    border-radius: 9px;
+    font-size: 13px;
     padding: 15px 32px;
-
-
      color: #dbe219;
-    /*opacity: 0.28; */
-    /*color: rgba(219,226,25,1);*/
 
-    /*
-    margin-top: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;*/
-
-    margin-top: 10px;
-    margin-left: 5px;
+     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
 
-    /* outline: none; */
+     /*
+    margin-top: 10px;
+    */
 }
 .menu_button:focus {
     outline: 0; 
@@ -152,75 +127,109 @@ body {
      color: black;
  }
 
- /*
- .menu_button:active {
-    background-color: lavender;
-    color: darkgray;
- }*/
-
  .menu_button[name="current_menu_button"] {
-
-   /* background-color: #dbe219; */
-  /* background-color: #1922e2;*/
    background-color: blue;
     color: darkgray;
     color: #dbe219;
-
-    /*
-     background-color: rgba(255,255,255,0.40);
-     outline: none;
-    */
  } 
 
-.essay {
-   /* background-color: antiquewhite; */
-  /* background-color: transparent; */
+ /*
+ #p5_canvas_container {
+    background-color: orchid;
+    position: absolute;
+    z-index: -4;
+ }*/
 
+ /*
+.essay_page {
+
+    background-color: orchid;
+
+} */
+
+.essay_area {
+  /*  display: flex; */
+  /* justify-content: space-around;*/
+
+   /* z-index: 5 ; */
+
+   padding-right: 20px;
+   padding-left: 20px;
+}
+
+.essay_title {
+     width: 450px;
+    
+    /*width: 30%; */
+    padding-top: 20px;
+   float: left;
+}
+
+.essay_box {  
   background-color: rgba(255,255,255,.15);
   backdrop-filter: blur(5px);
   box-shadow: inset 0 0 10px  white;
    
-    border: 1pt solid; 
-    border-color: lightgray;
-    border-radius: 9px;
-
-    resize: none;
-
-    font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
-
-    color: #1922e2;
-
-    font-style: normal;
-
-    position: absolute;
-    top: 80px;
-   
-   /* right: 120px; */
-    right: 5px; 
-
-   /* width:  27em; 
-    height: 30em; */
-    width: 50%;
-    height: 73%;
+  border: 1pt solid; 
+  border-color: lightgray;
+  border-radius: 9px;
+    width: 60%;
+   /* height: 73%; */
+   /*width: 700px ;  */
+    height: 500px; 
 
 outline-style: none;
-}
+float: right;
 
-.essay_title {
-   
-    width: 450px;
-    position: absolute;
-    top: 80px; 
-    left: 10px; 
+padding-top: 20px;
+padding-bottom: 10px; 
+
+margin-top: 20px;
+
+
 }
 
 .essay_text {
-    width: 100%;
+   
+    width: 90%;
     height: 100%;
+    overflow: scroll;
+    background-color: #dbe219 ;
+    color: black;
+    font-size: 16px;
+    font-family: 'Helvetica Neue', 'Helvetica' , 'Times new Roman', Arial,sans-serif;
+    font-style: normal;
+   
+    /*
+     text-align:  center; */
+
+     text-align: justify;
+    /*
+    border: 1pt solid; 
+    border-color: lightgray;
+    border-radius: 9px; */
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.essay_references {
+
+    color: white;
+
+    padding-top: 10px;
+    padding-left: 25px;
+
+    text-align: left;
+
 }
 
-
+#rob_lucas {
+    text-align: end;
+  }
 
   .face {
 
@@ -267,3 +276,5 @@ outline-style: none;
     border-radius: 50%;
     content: " ";
   }
+
+  
