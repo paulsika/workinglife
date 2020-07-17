@@ -7,17 +7,17 @@
 //init 1.5 1 2 
 // 1.5  3  2 
 let alignmentValue = 1.5
-let cohesionValue = 1 
+let cohesionValue = 1.5 // was 1 
 let separationValue = 2
 
 class Boid {
   constructor(p) {
     this.position = p.createVector(p.random(p.width), p.random(p.height));
     this.velocity = p5.Vector.random2D();
-    this.velocity.setMag(p.random(2, 4));
+    this.velocity.setMag(p.random(2, 5));  // was 2, 4
     this.acceleration = p.createVector();
-    this.maxForce = 1;
-    this.maxSpeed = 4;
+    this.maxForce = 0.2; //was 0.2 was 1
+    this.maxSpeed = 6; //was 5  was 4
     this.p = p 
   }
 
@@ -35,7 +35,7 @@ class Boid {
   }
 
   align(boids) {
-    let perceptionRadius = 50;
+    let perceptionRadius = 25; // was 50
    // let perceptionRadius = this.p.random(50, 100)
     let steering = this.p.createVector();
     let total = 0;
@@ -61,7 +61,7 @@ class Boid {
   }
 
   separation(boids) {
-    let perceptionRadius = 50;
+    let perceptionRadius = 24; //was 24  was 50 
 //   let perceptionRadius = this.p.random(100, 200)
     let steering = this.p.createVector();
     let total = 0;
@@ -90,7 +90,7 @@ class Boid {
 
   cohesion(boids) {
     
-    let perceptionRadius = 100;
+    let perceptionRadius = 40; //was 50 was 100 
     //let perceptionRadius = this.p.random(50, 150)
 
     let steering = this.p.createVector();
