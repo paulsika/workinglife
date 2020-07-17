@@ -127,6 +127,12 @@ function mouse_clicked(p) {
     //update_click_count(p); 
 
    // near_points(p)
+   update_sliding_camera_position_old(p)
+}
+
+function mouse_moved(p) {
+
+    update_sliding_camera_position_old(p)
 
 }
 
@@ -191,31 +197,34 @@ function pre_init() {
 function init() {
 
     let page_elements = [
-      //  p5_canvas_container(), 
+        p5_canvas_container(), 
         menu(), 
-      
         main_text_area(),
         // clock(), 
          sliding_camera(),
-        //  eyes()
+          eyes()
         ];
     page_elements.forEach(element => document.body.appendChild(element));
 
     //eyes_follow_cursor()
-  //  eyes_follow_cursor_jquery()
+    eyes_follow_cursor_jquery()
 
     let sketch = function (p) {
 
         p.disableFriendlyErrors = true; 
         
-      //  p.setup = function () { p5_setup(p); }
+        p.setup = function () { p5_setup(p); }
        // p.draw = function () { p5_draw(p); }
        
         p.mouseClicked = function () {
             
-            //mouse_clicked(p); 
+            mouse_clicked(p); 
         
         //    update_sliding_camera_position_old(p) 
+        }
+
+        p.mouseMoved = function() {
+            mouse_moved(p)
         }
     };
 

@@ -41,8 +41,9 @@ body {
     position: absolute ;
     left: 0px ; 
    /* left: -60px; */
-    top: 20px ; 
+  /* top: 20px ; */
     width: 70px ;
+    transform: rotate(-25deg) translateX(-15px); 
 }
 
  #camera {
@@ -50,10 +51,8 @@ body {
    position: absolute;
    top: 1px;
    right: 20px; 
-   
    /* width: 90px; */
    width: 120px;
-
 }
 
 /*
@@ -138,6 +137,7 @@ body {
   /*  background-color: orchid;*/
     position: absolute;
     z-index: -4;
+
  }
 
  /*
@@ -188,7 +188,7 @@ body {
     width: 60%;
    /* height: 73%; */
    /*width: 700px ;  */
-    height: 500px; 
+    height: 490px; 
 
 float: right;
 
@@ -255,39 +255,46 @@ outline: 0;
     text-align: end;
   }
 
-  .face {
 
-   /* position: absolute;
-    top: 170px; 
-    left: 200px; */
-   /* width: 100%; */
+#space_between_eyes {
 
-    margin: auto; 
-   /* width: 10%; */
-   width: 60px; 
-   
-   /* border: 3px solid green; */
+    background-color: orange;
     
-    position: absolute;
-  /*  top: 70px ; 
-  left: 40%; 
-  */
-    bottom: 6px;
-    right: 90px; 
+    width: 10px;
+    visibility: hidden;
+}
 
+  .face {
+    width: 100%; 
+    
+    /* margin: auto; */
+   /* width: 10%; */
+   width: 90px; 
+   /* border: 3px solid green; */
+    position: absolute;
+
+    bottom: 0px;
+    right: 90px; 
   }
   .eye {
    
-    position: relative;
+   position: relative;
+  
     display: inline-block;
-   
+  
+   /*
+   display: flexbox;
+   justify-content: space-between;
+*/
+
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    background: #CCC;
-
     
+     background: #CCC; 
+   /* background: #dbe219 */
 
+    /* padding-right: 5px; */
    /* margin: auto;  */
   }
   .eye:after { /*pupil*/
@@ -299,6 +306,6 @@ outline: 0;
     background: #000;
     border-radius: 50%;
     content: " ";
-  }
+   /* padding-right: 5px; */
 
-  
+  }

@@ -333,7 +333,7 @@ function sliding_camera() {
 
     let sliding_camera = document.createElement("img")
     sliding_camera.id = "sliding_camera"
-    sliding_camera.src = "images/camera_left_side_cut.png"
+    sliding_camera.src = "images/camera_left_side_cut2.png"
     
     return sliding_camera
 }
@@ -348,12 +348,13 @@ function annoying_camera() {
 }
 */
 
-function update_sliding_camera_position_old(p) {
+function update_sliding_camera_position_old2(p) {
 
     let camera = document.getElementById("sliding_camera");
    // let canvasHeight = document.getElementById("canvas").height ; 
     let upper_bound = 70.0 ;  let lower_bound = 5.0  ;
     var cameraY = ( p.mouseY * 90.0) / canvasHeight  ;//magic number
+  // var cameraY = ( p.mouseY * 140.0) / canvasHeight  ;//magic number
 
     if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
     if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
@@ -361,6 +362,19 @@ function update_sliding_camera_position_old(p) {
     camera.style.top = cameraY + "%"
 } 
 
+
+function update_sliding_camera_position_old(p) {
+
+    let camera = document.getElementById("sliding_camera");
+   // let canvasHeight = document.getElementById("canvas").height ; 
+    let upper_bound = 100.0 ;  let lower_bound = -20   ; // was 70.0 and 5.0
+    var cameraY = ( p.mouseY * 100.0) / canvasHeight  ;//magic number
+
+    if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
+    if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
+
+    camera.style.top = cameraY + "%"
+} 
 
 /*
 function update_camera_position_old(p) {
@@ -405,11 +419,27 @@ function eyes() {
     left_eye.id = "left_eye"
     left_eye.className = "eye"
 
+    /*
+    let left_eye_frame = document.createElement("div")
+    left_eye_frame.id = "left_eye_frame"
+    left_eye_frame.className = "eye_frame"
+
+*/
+
+
     let right_eye = document.createElement("div")
     right_eye.id = "right_eye"
     right_eye.className = "eye"
 
+
+
+
+    let space = document.createElement("div")
+    space.id = "space_between_eyes"
+    space.className = "eye"
+
     face.appendChild(left_eye)
+    face.appendChild(space)
     face.appendChild(right_eye)
    // move_area.appendChild(face)
 
