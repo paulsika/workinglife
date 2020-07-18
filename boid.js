@@ -8,7 +8,7 @@
 // 1.5  3  2 
 let alignmentValue = 1.5
 let cohesionValue = 1.5 // was 1 
-let separationValue = 2
+let separationValue = 2.5 // was 2 
 
 class Boid {
   constructor(p) {
@@ -37,7 +37,10 @@ class Boid {
   align(boids) {
     let perceptionRadius = 25; // was 50
    // let perceptionRadius = this.p.random(50, 100)
+    
     let steering = this.p.createVector();
+    //let steering = this.p.createVector(p.mouseX, p.mouseY)
+
     let total = 0;
     for (let other of boids) {
       let d = this.p.dist(
@@ -57,6 +60,9 @@ class Boid {
       steering.sub(this.velocity);
       steering.limit(this.maxForce);
     }
+
+   // console.log("STEERING: ", steering)
+
     return steering;
   }
 
@@ -134,9 +140,29 @@ class Boid {
     this.acceleration.add(separation);
   }
 
+  move_to_mouse( position) {
+
+    var bipc = this.p.createVector(this.p.mouseX, this.p.mouseY);
+    var v = bipc.sub(position)
+    //v.div(1000); // was 100,  500 is good 
+    v.div(this.p.random(4000, 5000)) //the greater the better for subtlety.
+   // v.div(this.p.random(100, 20000))
+    return v;
+  }
+
   update() {
     this.position.add(this.velocity);
+
+    this.position.add(this.move_to_mouse(this.position))
+    this.position.add(this.move_to_mouse(this.position))
+    this.position.add(this.move_to_mouse(this.position))
+    //this.position.add(this.move_to_mouse(this.position))
+
     this.velocity.add(this.acceleration);
+
+    this.velocity.add(this.move_to_mouse(this.position))
+    
+
     this.velocity.limit(this.maxSpeed);
     this.acceleration.mult(0);
   }

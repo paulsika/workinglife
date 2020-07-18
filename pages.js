@@ -281,14 +281,9 @@ function update_clock_distorted(p) {
 function update_clock(p) {
     
     let seconds = Math.floor( (performance.now() - startTime) / 1000 ) 
-   // console.log("ELAPSED TIME", elapsed_time)
     
     let elapsed_second = seconds % 60
-    //console.log("ELAPSED SECONDS: ", elapsed_second)
-  //  let elapsed_minute = Math.floor(elapsed_time / 60 )
     let elapsed_minute = Math.floor((seconds  % 3600) / 60 )
-
-    //let elapsed_hour = Math.floor(elapsed_time / 3600)
     let elapsed_hour = Math.floor((seconds % 86400) / 3600 )
 
     let displayed_time = elapsed_hour.toString().padStart(2,'0') + " : " 
@@ -299,36 +294,6 @@ function update_clock(p) {
     clock.innerHTML = displayed_time ;
 }
 
-
-
-/*
-function camera_old() {
-    let camera = document.createElement("img"); 
-    camera.id = "camera";   camera.src = "images/camera.png"; 
-    return camera ; 
-}
-
-function camera() {
-
-    let camera_div = document.createElement("div")
-    camera_div.id = "camera"
-
-    let camera_head = document.createElement("img")
-    camera_head.id = "camera_head"
-   // camera_head.src = "images/camera_head_new.png"
-   camera_head.src = "images/camera_head_new_centered2.png"
-   camera_head.style.transform = "translateY(-21px) translateX(18px)"
-
-    let camera_base = document.createElement("img")
-    camera_base.id = "camera_base"
-    camera_base.src = "images/camera_base_new.png"
-
-    camera_div.appendChild(camera_head)
-    camera_div.appendChild(camera_base) 
-
-    return camera_div 
-}*/
-
 function sliding_camera() {
 
     let sliding_camera = document.createElement("img")
@@ -337,16 +302,6 @@ function sliding_camera() {
     
     return sliding_camera
 }
-
-/*
-function annoying_camera() {
-
-    let camera = document.createElement("img")
-    camera.id = "annoying_camera"
-    camera.src = "images/camera_left_side.png"
-    return camera 
-}
-*/
 
 function update_sliding_camera_position_old2(p) {
 
@@ -376,36 +331,6 @@ function update_sliding_camera_position_old(p) {
     camera.style.top = cameraY + "%"
 } 
 
-/*
-function update_camera_position_old(p) {
-
-    let camera = document.getElementById("camera");
-   // let canvasHeight = document.getElementById("canvas").height ; 
-    let upper_bound = 70.0 ;  let lower_bound = 5.0  ;
-    var cameraY = ( p.mouseY * 90.0) / canvasHeight  ;//magic number
-
-    if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
-    if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
-
-    camera.style.top = cameraY + "%"
-} */
-
-/*
-function update_camera_position(p) {
-
-    let camera = document.getElementById("camera");
-   // let canvasHeight = document.getElementById("canvas").height ; 
-    let upper_bound = 70.0 ;  let lower_bound = 5.0  ;
-    var cameraY = ( p.mouseY * 90.0) / canvasHeight  ;//magic number
-
-    if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
-    if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
-
-    //camera.style.top = cameraY + "%"
-
-} */
-
-
 function eyes() {
 
     let move_area = document.createElement("section")
@@ -426,13 +351,9 @@ function eyes() {
 
 */
 
-
     let right_eye = document.createElement("div")
     right_eye.id = "right_eye"
     right_eye.className = "eye"
-
-
-
 
     let space = document.createElement("div")
     space.id = "space_between_eyes"

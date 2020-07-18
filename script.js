@@ -1,32 +1,23 @@
-/**** GENERAL VALUES */
-
-/*
-var canvasWidth =  640 ; // 1100
-var canvasHeight = 380 ; // 500 
-*/
-
-/*
 var canvasWidth =  window.innerWidth ; 
 var canvasHeight = window.innerHeight;
-*/
 
-
+/*
 var canvasWidth = window.outerWidth;
 var canvasHeight = window.outerHeight;
-
+*/
 
 const flock = [];
 
 //canvas size matters, 
 //number of boids matters 
-//Daniel is using a 640x380 we are cover 
+//Daniel is using a 640x380  
 //non minified version of p5 
 //disable friendly errors 
 function setup_flock(p) {
     for (let i = 0; i < 200; i++) {
         flock.push(new Boid(p));
     }
-    console.log("CANVAS HEIGHT WIDTH", canvasHeight, canvasHeight)
+    //console.log("CANVAS HEIGHT WIDTH", canvasHeight, canvasHeight)
 }
 
 function draw_flock(p) {
@@ -40,8 +31,6 @@ function draw_flock(p) {
 }
 
 function draw_lines_from_flock(p) {
-    //  let vertices = island_bodies.map( a_body => a_body.position) ;
-    //let boid_pairs = _.chunk(flock, 2)
     let boid_positions = flock.map(a_boid => a_boid.position)
     let position_pairs = _.chunk(boid_positions, 2)
     
@@ -56,7 +45,7 @@ function draw_lines_from_flock(p) {
 }
 
 function draw_triangles_from_flock(p) {
-    //  let vertices = island_bodies.map( a_body => a_body.position) ;
+    //let vertices = island_bodies.map( a_body => a_body.position) ;
     //let boid_pairs = _.chunk(flock, 2)
     let boid_positions = flock.map(a_boid => a_boid.position)
     let position_pairs = _.chunk(boid_positions, 3)
@@ -77,7 +66,7 @@ function draw_quads_from_flock(p) {
     let boid_positions = flock.map(a_boid => a_boid.position)
     let position_pairs = _.chunk(boid_positions, 4)
     
-    p.strokeWeight(1)
+    p.strokeWeight(0.5)
     p.noFill()
     
     for (let pair of position_pairs) {
@@ -90,7 +79,7 @@ function draw_beziers_from_flock(p) {
     let boid_positions = flock.map(a_boid => a_boid.position)
     let position_pairs = _.chunk(boid_positions, 4)
     
-    p.strokeWeight(1)
+    p.strokeWeight(0.4)
     p.noFill()
     p.stroke(240)
     for (let pair of position_pairs) {
@@ -99,41 +88,14 @@ function draw_beziers_from_flock(p) {
     }
 }
 
-
-/*
-function is_near( x1, y1, x2, y2, dist) {
-
-    let distance = p.dist(x1, y1, x2, y2)
-    console.log("DISTANCE: ", distance)
-
-    return  distance <= dist
-}
-
-function near_points(p) {
-
-    console.log("NEAR POINTS")
-
-    let boid_positions = flock.map(a_boid => a_boid.position)
-
-    let points = boid_positions.filter(is_near(p.mouseX, p.mouseY,))
-
-    console.log("POINTS: ", points)
-}
-*/
-
 function mouse_clicked(p) {
-    //draw_islands_from_matter(p)
-
-    //update_click_count(p); 
-
-   // near_points(p)
-   update_sliding_camera_position_old(p)
+    
+   update_sliding_camera_position_old(p) // think of mobile 
+  // console.log("MOUSE X Y: ", p.mouseX, p.mouseY)
 }
 
 function mouse_moved(p) {
-
     update_sliding_camera_position_old(p)
-
 }
 
 function draw_framerate(p) {
@@ -142,37 +104,26 @@ p.fill(255);
 p.stroke(0);
 p.text("FPS: " + fps.toFixed(2), 10, p.height - 220);
 }
-//let background_color = "#BEBEBE"
-//let background_color = "#7F7F7F"
+
 let background_color = "#817F80"
 
 function p5_setup(p) {
 
     let canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id("canvas"); //using p5 own function   
-    // p.background(220, 180, 200);
     p.background(background_color)
     update_sliding_camera_position_old(p)
-    //  init_physics();  //should automatically add physics bodies to world.
     setup_flock(p)
 }
 
 function p5_draw(p) {
-     p.clear();
+    p.clear();
     p.noStroke();
-     //p.background(220, 180, 200);
-
-    p.background(background_color)
-
-   // update_clock(p);
-    draw_framerate(p)
-   // update_sliding_camera_position_old(p)
-
+   update_clock(p);
    draw_flock(p)
    draw_lines_from_flock(p) 
-  // draw_triangles_from_flock(p)
-   //lines and beziers together is interesting but too busy
-//draw_beziers_from_flock(p) 
+ //draw_triangles_from_flock(p)
+ //draw_quads_from_flock(p)
 }
 
 function load_init() {
@@ -188,7 +139,6 @@ function pre_init() {
     let title = document.createElement("img")
     title.id = "main_title"
     title.src = "images/main_title.png"
-
     title.addEventListener("click", function () { load_init() })
     document.body.appendChild(title)
 }
@@ -200,7 +150,7 @@ function init() {
         p5_canvas_container(), 
         menu(), 
         main_text_area(),
-        // clock(), 
+         clock(), 
          sliding_camera(),
           eyes()
         ];
@@ -214,18 +164,10 @@ function init() {
         p.disableFriendlyErrors = true; 
         
         p.setup = function () { p5_setup(p); }
-       // p.draw = function () { p5_draw(p); }
+        p.draw = function () { p5_draw(p); }
        
-        p.mouseClicked = function () {
-            
-            mouse_clicked(p); 
-        
-        //    update_sliding_camera_position_old(p) 
-        }
-
-        p.mouseMoved = function() {
-            mouse_moved(p)
-        }
+        p.mouseClicked = function () { mouse_clicked(p); }
+        p.mouseMoved = function() { mouse_moved(p) }
     };
 
     new p5(sketch, document.getElementById('p5_canvas_container'));
