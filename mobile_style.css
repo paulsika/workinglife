@@ -118,14 +118,13 @@ body {
     outline: 0; 
 }
  .menu_button:hover {
-     background-color: #dbe219 ;
-     color: black;
+  background-color: blue;
+  color: #dbe219 ;
  }
 
  .menu_button[name="current_menu_button"] {
-   background-color: blue;
-    color: darkgray;
-    color: #dbe219;
+  background-color: #dbe219 ;
+    color: black;
  } 
 
  
