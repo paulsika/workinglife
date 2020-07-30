@@ -7,9 +7,7 @@ var canvasWidth = window.outerWidth;
 var canvasHeight = window.outerHeight;
 */
 
-
-//GRADIENTS 
-
+/*
 const Y_AXIS = 1;
 const X_AXIS = 2;
 let b1, b2, c1, c2;
@@ -43,7 +41,7 @@ function set_gradient(p, x, y, w, h, c1, c2, axis) {
       }
     }
   }
-
+*/
 
 
 const flock = [];
@@ -242,7 +240,7 @@ function change_line_y_on_mousemove(p) {
 }
 
 
-let background_gradient; 
+//let background_gradient; 
 function draw_neoliberal_graphics(p) {
 
     if( line_reached_end_canvas()) {
@@ -278,7 +276,7 @@ function p5_setup(p) {
     canvas.id("canvas"); //using p5 own function   
     
     //p.background(background_color)
-    background_gradient = p.loadImage("gradient.jpg")
+   // background_gradient = p.loadImage("gradient.jpg")
 
     update_sliding_camera_position_old(p)
     setup_flock(p)
@@ -357,8 +355,8 @@ function init() {
     
     //change_page(blurred_page());
     //change_page(moles_page())
-   // change_page(intro_page())
+    change_page(intro_page())
     //change_page(working_page())
    // change_page(children_page())
-   change_page(neoliberal_page())
+  // change_page(neoliberal_page())
 }
