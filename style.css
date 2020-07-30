@@ -179,8 +179,9 @@ body {
 
 .essay_box {  
   
-  /* backdrop-filter: blur(7px); */
+  -webkit-backdrop-filter: blur(10px) ;
   backdrop-filter: blur(10px);
+  
   border-color: lightgray;
   border-radius: 9px;
     width: 60%;
