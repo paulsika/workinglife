@@ -6,42 +6,6 @@ Forms of Control in Johannesburg’s New Workplaces
 
 var startTime = performance.now()
 
-/*
-function title_old () {
-
-    let title = document.createElement("p"); 
-    title.id = "title"; 
-    title.innerHTML = "&quot;Working Life, Living Work&quot; - by Riley Grant &amp; William Shoki" ; 
-    return title ;     
-}*/
-
-/*
-function title_old2() {
-
-
-   let title = document.createElement("div")
-    //let title = document.createElement("p")
-    
-    let line1 = document.createElement("h1")
-    //let line1 = document.createTextNode()
-    line1.id = "title_line_1"
-    //line1.innerHTML = "&quot;Working Life, Living Work&quot; &#58;"
-    line1.innerHTML = "Working Life, Living Work&#58;"
-
-    let line2 = document.createElement("h2")
-    line2.id = "title_line_2"
-    line2.innerHTML = "Forms of Control in Johannesburg&apos;s New Workplaces"
-
-    let line_break = document.createElement("br")
-
-    title.appendChild(line1)
-   // title.appendChild(line_break)
-
-    title.appendChild(line2)
-
-    return title ;     
-} */
-
 function title() {
     let title = document.createElement("img")
     title.id = "main_title"
@@ -60,17 +24,17 @@ function main_text_area() {
 
     let area = document.createElement("div") ; 
     area.id = "main_text_area"; 
-    
+    /*
     let child1 = document.createElement("p") ; 
     child1.innerHTML = "main text area, page for each menu item will load here"; 
     let child2 = document.createElement("button"); 
     child2.innerHTML = "dummy button";
-
-    area.appendChild(child1); area.appendChild(child2);
+    area.appendChild(child1); area.appendChild(child2);*/
+   
     return area ; 
 }
 
-
+var current_page_id = "" 
 function un_highlight_current_menu_button() {
 
     let elements = document.getElementsByName("current_menu_button") ; 
@@ -90,6 +54,48 @@ function highlight_current_menu_button(page) {
     document.getElementById(id).name = "current_menu_button"; 
 }
 
+function current_page() {
+    return current_page_id ;
+}
+
+function is_current_page(page_id) {
+    return (current_page_id == page_id )
+}
+
+function is_page(page, page_id) {
+
+    return (page.id == page_id)
+    /*
+    switch( page.id ) {
+        case "intro_page": visible = true; break; 
+        case "moles_page": visible = false;  break; 
+        case "neoliberal_page": visible = false; break; 
+        case "blurred_page": visible = true ; break;     
+        case "working_page": visible = false ;break; 
+        case "children_page": visible = false ;break; 
+    }*/
+}
+
+function change_canvas_visibility(page) {
+
+    var visible = false 
+
+    switch( page.id ) {
+        case "intro_page": visible = true; break; 
+        case "moles_page": visible = false;  break; 
+        case "neoliberal_page": visible = false; break; 
+        case "blurred_page": visible = true ; break;     
+        case "working_page": visible = false ;break; 
+        case "children_page": visible = false ;break; 
+    }
+
+
+//  CANVAS VISIBLE OR NOT ACCORDING TO PAGE TO load_init. 
+// CHOOSE WHAT TO DRAW IN DRAW METHOD MIGHT BE THE BEST WAY 
+// draw_flock 
+// draw_... 
+}
+
 function change_page(  page  ) {
 
     let main_text_area = document.getElementById("main_text_area"); 
@@ -101,6 +107,43 @@ function change_page(  page  ) {
     //add new page 
     main_text_area.appendChild(page);
     highlight_current_menu_button(page);
+
+
+    current_page_id = page.id ;
+
+    change_canvas_visibility(page) // might be good to put it a few lines above
+
+
+    if( is_current_page("moles_page")) {
+        let video = document.getElementById("moles_video")
+        video.play()
+    }
+
+    if (is_current_page("working_page")) {
+        let video = document.getElementById("working_video")
+        video.play()
+    }
+    
+
+    if (is_current_page("children_page")) {
+        access_camera()
+    }
+
+    if (is_current_page("neoliberal_page")) {
+
+        line_x = initial_line_x ; //this number can be set to negative 
+        
+        last_line_x = line_x ; 
+        //opposite_line_y = random_y()
+
+        //set_last_line_coords()
+      
+        if (p4 != null) {
+        p4.clear();
+        }
+
+
+    }
 }
 
 /*** THE PAGES  */
@@ -108,7 +151,6 @@ function change_page(  page  ) {
 
 function template_page(name, title_src, html_src) {
     
-    
     let page = document.createElement("div"); 
     page.id = name + "_page";
     page.className = "essay_page"
@@ -129,48 +171,7 @@ function template_page(name, title_src, html_src) {
     essay_text.innerHTML = html_src  
     essay_text.className = "essay_text"
 
-    //let essay_references = document.createElement("div")
-    //essay_references.className = "essay_references"
-    //essay_references.innerHTML = ref_src
     essay_box.appendChild(essay_text)
-    //essay_box.appendChild(essay_references)
-
-    essay_area.appendChild(title)
-    essay_area.appendChild(essay_box)
-
-    page.appendChild(essay_area)
-
-    return page ; 
-}
-
-function template_page_with_references_box(name, title_src, html_src, ref_src) {
-    
-    
-    let page = document.createElement("div"); 
-    page.id = name + "_page";
-    page.className = "essay_page"
-  
-    let essay_area = document.createElement("div")
-    essay_area.className = "essay_area"
-
-   let title = document.createElement("img");   
-    title.id = page.id + "_title"; 
-    title.src = title_src ; 
-    title.className = "essay_title";
-
-    let essay_box = document.createElement("div"); 
-     essay_box.id = name + "_essay"
-    essay_box.className= "essay_box" ; 
-
-    let essay_text = document.createElement("div")
-    essay_text.innerHTML = html_src  
-    essay_text.className = "essay_text"
-
-    //let essay_references = document.createElement("div")
-    //essay_references.className = "essay_references"
-    //essay_references.innerHTML = ref_src
-    essay_box.appendChild(essay_text)
-    //essay_box.appendChild(essay_references)
 
     essay_area.appendChild(title)
     essay_area.appendChild(essay_box)
@@ -182,15 +183,41 @@ function template_page_with_references_box(name, title_src, html_src, ref_src) {
 
 function moles_page() { 
 
-    return template_page("moles", "images/moles_to_serpents.png", "essay.html")
+    let page =  template_page("moles", "images/moles_to_serpents.png", moles_text)
+
+    let video = document.createElement("video")
+    video.id = "moles_video"
+   // src="movie.mp4" type="video/mp4"
+    video.src = "moles_video.mp4"
+    video.type = "video/mp4"
+    video.width = canvasWidth
+    video.autoplay = true 
+    video.loop = true 
+   page.appendChild(video)
+    return page; 
 }
 
 function neoliberal_page() { 
-    return template_page("neoliberal", "images/neoliberal_reason_and_realism.png", "essay.html")
+
+let page = template_page("neoliberal", "images/neoliberal_reason_and_realism.png", neoliberalism_text)
+
+let gradient = document.createElement("img")
+gradient.id = "neoliberal_gradient"
+gradient.src = "gradient.jpg"
+page.appendChild(gradient)
+
+return page ; 
+
 }
 
 function intro_page() {
-    return template_page("intro", "images/introduction_radial.png", "essay.html")
+  
+  let page =   template_page("intro", "images/introduction_radial.png", introduction_text)
+  let bg_image = document.createElement("img")
+  bg_image.id = "introduction_background_image" ;
+  bg_image.src = "images/introduction_background.jpg"
+  page.appendChild(bg_image)
+  return page ;
 }
 
 
@@ -204,13 +231,67 @@ function blurred_page() {
 }
 
 function working_page() {    
-    return template_page("working", "images/working_life_living_work.png", "essay.html")
+    let page =  template_page("working", "images/working_life_living_work.png", working_text)
+
+    let video = document.createElement("video")
+    video.id = "working_video" 
+    video.src = "blurred_scroll_03.mp4"
+    video.type = "video/mp4"
+    video.autoplay = true
+    video.loop = true 
+    page.appendChild(video)
+    return page ;
 }
 
 
+function access_camera() {
+
+
+    let connection_loading =  document.getElementById("connection_loading")
+    let video = document.getElementById("webcam_video")
+
+    var handle_success = function(stream) {
+      
+        console.log("WEB CAM SUCCESS")
+        video.srcObject = stream ; 
+        video.onloadedmetadata = function(e) {
+            video.play();
+          };
+        connection_loading.style.visibility = "hidden" ;
+
+    };
+
+
+    var handle_error = function(error) {
+        
+        console.log("WEB CAM FAILURE", error)
+        connection_loading.style.zIndex = -4
+        video.style.display = false 
+    }
+
+    navigator.mediaDevices.getUserMedia({audio: true, video: true})
+    .then(handle_success)
+    .catch(handle_error)
+
+
+}
+
 function children_page() { 
    
-    return template_page("children", "images/the_children_of_marx_and_zoom.png", "essay.html")
+    let page =  template_page("children", "images/the_children_of_marx_and_zoom.png", children_text)
+
+    let connection_loading = document.createElement("img")
+    connection_loading.src = "images/connection_loading.gif"
+    connection_loading.id = "connection_loading"
+
+    let video = document.createElement("video")
+    video.id = "webcam_video" 
+    console.log(video)
+
+    page.appendChild(video)
+    page.appendChild(connection_loading)
+
+    return page 
 }
 
 

@@ -1,20 +1,57 @@
 var canvasWidth =  window.innerWidth ; 
 var canvasHeight = window.innerHeight;
 
+var p4 = null ; 
 /*
 var canvasWidth = window.outerWidth;
 var canvasHeight = window.outerHeight;
 */
 
-const flock = [];
 
-//canvas size matters, 
-//number of boids matters 
-//Daniel is using a 640x380  
-//non minified version of p5 
-//disable friendly errors 
+//GRADIENTS 
+
+const Y_AXIS = 1;
+const X_AXIS = 2;
+let b1, b2, c1, c2;
+
+function set_gradient_colors(p) {
+    // Define colors
+  b1 = p.color(255);
+  b2 = p.color(0);
+  c1 = p.color(204, 102, 0);
+  c2 = p.color(0, 102, 153);
+}
+
+function set_gradient(p, x, y, w, h, c1, c2, axis) {
+    p.noFill();
+  
+    if (axis === Y_AXIS) {
+      // Top to bottom gradient
+      for (let i = y; i <= y + h; i++) {
+        let inter = p.map(i, y, y + h, 0, 1);
+        let c = p.lerpColor(c1, c2, inter);
+        p.stroke(c);
+        p.line(x, i, x + w, i);
+      }
+    } else if (axis === X_AXIS) {
+      // Left to right gradient
+      for (let i = x; i <= x + w; i++) {
+        let inter = p.map(i, x, x + w, 0, 1);
+        let c = p.lerpColor(c1, c2, inter);
+        p.stroke(c);
+        p.line(i, y, i, y + h);
+      }
+    }
+  }
+
+
+
+const flock = [];
+//canvas size matters, //number of boids matters //Daniel is using a 640x380  
+//non minified version of p5 , //disable friendly errors 
+let flock_count = 100 // was 200 then 150
 function setup_flock(p) {
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < flock_count; i++) {
         flock.push(new Boid(p));
     }
     //console.log("CANVAS HEIGHT WIDTH", canvasHeight, canvasHeight)
@@ -88,16 +125,6 @@ function draw_beziers_from_flock(p) {
     }
 }
 
-function mouse_clicked(p) {
-    
-   update_sliding_camera_position_old(p) // think of mobile 
-  // console.log("MOUSE X Y: ", p.mouseX, p.mouseY)
-}
-
-function mouse_moved(p) {
-    update_sliding_camera_position_old(p)
-}
-
 function draw_framerate(p) {
     let fps = p.frameRate();
 p.fill(255);
@@ -105,25 +132,180 @@ p.stroke(0);
 p.text("FPS: " + fps.toFixed(2), 10, p.height - 220);
 }
 
+function draw_blurred_lines(p) {
+    p.clear();
+    draw_flock(p)
+    draw_lines_from_flock(p)
+}
+
+//let grid_label = "Soft Body"
+//let grid_origin = { "x": 0, "y": 0 }
+//let grid_columns = 20;
+//let grid_rows = 12;
+let grid_width_step = 100;
+let grid_height_step = 100;
+
+var horizontal_lines_points = [] ; 
+var vertical_lines_points = [] ;
+
+
+function gen_grid_points() {
+    //vertical lines 
+    var xs = _.range(-5, canvasWidth, grid_width_step)
+    for( x of xs) {
+
+        vertical_lines_points.push( [ {"x": x, "y": canvasHeight }, {"x": x, "y": 0}  ] )
+    }
+
+    var ys = _.range(-5, canvasHeight, grid_height_step)
+    for (y of ys) {
+        horizontal_lines_points.push( [ {"x":0, "y":y }, {"x":canvasWidth, "y":y} ])
+    }
+}
+
+function draw_grid_lines(p, lines) {
+
+    p.stroke("white")
+    p.strokeWeight(1)
+    for( line of lines) {
+        let pt1 = line[0]
+        let pt2 = line[1]
+        p.line(pt1.x, pt1.y, pt2.x, pt2.y)
+    }
+}
+
+
+
+
+//var line_y = canvasHeight / 2 ; 
+
+function random_y() { return _.random( canvasHeight/3 , canvasHeight * 3/4) }
+
+var line_y = random_y()
+let initial_line_x = -20
+var line_x = initial_line_x ; 
+let line_weight = 5; 
+
+var last_line_y = line_y ; 
+var last_line_x = line_x 
+
+function set_last_line_coords() {
+    last_line_x = line_x ; 
+    last_line_y = line_y ; 
+}
+
+var opposite_line_y = random_y()
+var last_opposite_line_y = opposite_line_y
+
+function line_reached_end_canvas() {
+    return line_x >= canvasWidth
+}
+
+function draw_stock_lines(p) {
+
+    p.strokeWeight(line_weight)
+
+    //main line 
+    p.stroke("white")
+    p.line(last_line_x, last_line_y, line_x, line_y)  
+
+    // close, twin line 
+     p.stroke("white")
+     p.line(last_line_x, last_line_y + 50, line_x, line_y + 50)   
+
+     // opposite line 
+     p.stroke("red")
+     p.line(last_line_x, last_opposite_line_y, line_x, opposite_line_y)
+   
+     //line has reached canvas end , reset 
+     if (line_reached_end_canvas()) {
+
+        // p.clear();
+         line_x = 0 ; 
+         line_y = random_y()
+
+        set_last_line_coords()
+        opposite_line_y = random_y()
+        last_opposite_line_y = opposite_line_y ;
+     }
+     else {
+        set_last_line_coords()
+        last_opposite_line_y = opposite_line_y
+        line_x += 4 ;
+     }
+}
+
+
+function change_line_y_on_mousemove(p) {
+    line_y += p.movedY ; 
+    opposite_line_y -= p.movedY ;
+}
+
+
+let background_gradient; 
+function draw_neoliberal_graphics(p) {
+
+    if( line_reached_end_canvas()) {
+        p.clear()
+    }
+
+  //  set_gradient(p,0, 0, p.width / 2, p.height, b1, b2, X_AXIS);
+   // set_gradient(p, p.width / 2, 0, p.width / 2, p.height, b2, b1, X_AXIS);
+
+  // p.background(background_gradient)
+
+    draw_grid_lines(p, vertical_lines_points)
+    draw_grid_lines(p, horizontal_lines_points)
+    draw_stock_lines(p)
+}
+
+function mouse_clicked(p) {
+    
+    update_sliding_camera_position_old(p) // think of mobile 
+ }
+ 
+ function mouse_moved(p) {
+     update_sliding_camera_position_old(p)
+     change_line_y_on_mousemove(p)
+ }
+
+
 let background_color = "#817F80"
 
 function p5_setup(p) {
 
     let canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id("canvas"); //using p5 own function   
-    p.background(background_color)
+    
+    //p.background(background_color)
+    background_gradient = p.loadImage("gradient.jpg")
+
     update_sliding_camera_position_old(p)
     setup_flock(p)
+    gen_grid_points(p)
+   
 }
 
 function p5_draw(p) {
-    p.clear();
+    //p.clear();
+
+  
     p.noStroke();
    update_clock(p);
-   draw_flock(p)
-   draw_lines_from_flock(p) 
- //draw_triangles_from_flock(p)
- //draw_quads_from_flock(p)
+ 
+    //checking current_page id    
+    switch (current_page()) {
+        //case "intro_page":
+        case "blurred_page":  draw_blurred_lines(p); break;
+        case "neoliberal_page": draw_neoliberal_graphics(p); break; 
+
+        default:  {  // clear screen 
+            //nothing should be drawn 
+            p.clear(); // CHECK IF NEEDED when switching between pages with neoliberal 
+          }     
+    }
+
+
 }
 
 function load_init() {
@@ -168,8 +350,15 @@ function init() {
        
         p.mouseClicked = function () { mouse_clicked(p); }
         p.mouseMoved = function() { mouse_moved(p) }
+
     };
 
-    new p5(sketch, document.getElementById('p5_canvas_container'));
-    change_page(blurred_page());
+ p4 =    new p5(sketch, document.getElementById('p5_canvas_container'));
+    
+    //change_page(blurred_page());
+    //change_page(moles_page())
+   // change_page(intro_page())
+    //change_page(working_page())
+   // change_page(children_page())
+   change_page(neoliberal_page())
 }
