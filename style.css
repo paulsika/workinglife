@@ -202,6 +202,14 @@ outline-style: none;
 outline: 0;
 
 }
+/*
+@media screen and (min-height: 1000px) {
+  .essay_box  {
+  
+    height: 800px ; 
+  }
+*/
+
 
 .essay_text {
    
