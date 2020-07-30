@@ -181,8 +181,6 @@ body {
   
   /* backdrop-filter: blur(7px); */
   backdrop-filter: blur(10px);
-
-  
   border-color: lightgray;
   border-radius: 9px;
     width: 60%;
@@ -202,13 +200,17 @@ outline-style: none;
 outline: 0;
 
 }
+#moles_essay.essay_box {
+  background-color: rgb(255, 255, 255, 0.34)
+}
+
 /*
-@media screen and (min-height: 1000px) {
+@media screen and (max-height: 1500px) {
   .essay_box  {
   
     height: 800px ; 
-  }
-*/
+  }*/
+
 
 
 .essay_text {
@@ -235,14 +237,10 @@ outline: 0;
     z-index: 2;
 }
 .essay_references {
-
     color: white;
-
     padding-top: 10px;
     padding-left: 25px;
-
     text-align: left;
-
 }
 
 #rob_lucas {
@@ -251,7 +249,6 @@ outline: 0;
 
 
 #moles_video {
-
   position: absolute;
   left: 0;
   top: 0;
@@ -303,4 +300,3 @@ outline: 0;
   z-index: -5;
   opacity: 0.8;
 }
-
