@@ -123,9 +123,11 @@ function change_page(  page  ) {
         let video = document.getElementById("working_video")
         video.play()
     }
-    
 
-    if (is_current_page("children_page")) {
+    //media="screen and (min-width: 601px)"
+    
+    if (is_current_page("children_page") && 
+        window.matchMedia("screen and (min-width: 601px)").matches  ) {
         access_camera()
     }
 

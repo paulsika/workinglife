@@ -60,16 +60,19 @@ body {
   }
 
 #clock {
-      font-size: 20px;  /* was 16px */
-   font-family: dseg_modern_mini_italic;
-   background-color: royalblue;
-   border: 2pt solid #dbe219;
-   color: #dbe219;
-   box-shadow: inset 0 0 30px rgb(15, 58, 250); 
-   padding: 2px;
-    position: fixed ; 
-   bottom: -12px;
-    right: 30px;
+  font-size: 20px;  /* was 16px */
+  font-family: dseg_modern_mini_italic;
+  background-color: black;
+  border: 2pt solid #ff0000;
+  color: #ff0000;
+ 
+  /*
+  box-shadow: inset 0 0 30px rgb(15, 58, 250); 
+ */
+  padding: 2px;
+   position: fixed ; 
+  bottom: -12px;
+   right: 30px;
 }
 
 #sliding_camera {
@@ -127,13 +130,7 @@ body {
     color: black;
  } 
 
- 
- #p5_canvas_container {
-   
-  /*  background-color: orchid;*/
-    position: absolute;
-    z-index: -4;
- }
+
 
  /*
 .essay_page {
@@ -240,3 +237,82 @@ margin: auto    ;
     text-align: end;
   }
 
+
+   
+ #p5_canvas_container {
+   
+  /*  background-color: orchid;*/
+ /*
+  position: absolute;
+    z-index: -4; */
+ 
+    display: none;
+  }
+
+  #moles_video {
+
+    display: none;
+    /*
+    position: absolute;
+    left: 0;
+    top: 0;
+      z-index: -3; */
+  }
+  
+  #introduction_background_image{
+
+   display: none;
+   
+   /*
+    position: absolute;
+    left: 10px; 
+    bottom: 0; 
+    width: 34%;
+  
+    z-index: -2; */
+  }
+  
+  #working_video {
+  
+    display: none;
+    /*
+    position: absolute; 
+    left: 0;
+    margin-left: 25%;
+    z-index: -3 ;
+    opacity: 0.5; */
+  
+  }
+  
+  #connection_loading { 
+
+    display: none;
+    /*
+    position: absolute;
+    left: 0;
+    top:0; 
+    width: 100%;
+    z-index: 10; */
+   
+  }
+  
+  #webcam_video {
+
+    display: none;
+    /*
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    width: 100%;
+    z-index: -3; */
+  }
+  
+  #neoliberal_gradient {
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    opacity: 0.8;
+  }
