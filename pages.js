@@ -134,12 +134,14 @@ function change_page(  page  ) {
     if (is_current_page("neoliberal_page")) {
 
         line_x = initial_line_x ; //this number can be set to negative 
-        
-        last_line_x = line_x ; 
-        //opposite_line_y = random_y()
+        line_y = random_y()
+        last_line_x = line_x ;         
+        opposite_line_y = random_y()
 
-        //set_last_line_coords()
       
+
+
+
         if (p4 != null) {
         p4.clear();
         }
@@ -288,7 +290,7 @@ function children_page() {
 
     let video = document.createElement("video")
     video.id = "webcam_video" 
-    console.log(video)
+   // console.log(video)
 
     page.appendChild(video)
     page.appendChild(connection_loading)

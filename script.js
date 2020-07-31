@@ -7,43 +7,6 @@ var canvasWidth = window.outerWidth;
 var canvasHeight = window.outerHeight;
 */
 
-/*
-const Y_AXIS = 1;
-const X_AXIS = 2;
-let b1, b2, c1, c2;
-
-function set_gradient_colors(p) {
-    // Define colors
-  b1 = p.color(255);
-  b2 = p.color(0);
-  c1 = p.color(204, 102, 0);
-  c2 = p.color(0, 102, 153);
-}
-
-function set_gradient(p, x, y, w, h, c1, c2, axis) {
-    p.noFill();
-  
-    if (axis === Y_AXIS) {
-      // Top to bottom gradient
-      for (let i = y; i <= y + h; i++) {
-        let inter = p.map(i, y, y + h, 0, 1);
-        let c = p.lerpColor(c1, c2, inter);
-        p.stroke(c);
-        p.line(x, i, x + w, i);
-      }
-    } else if (axis === X_AXIS) {
-      // Left to right gradient
-      for (let i = x; i <= x + w; i++) {
-        let inter = p.map(i, x, x + w, 0, 1);
-        let c = p.lerpColor(c1, c2, inter);
-        p.stroke(c);
-        p.line(i, y, i, y + h);
-      }
-    }
-  }
-*/
-
-
 const flock = [];
 //canvas size matters, //number of boids matters //Daniel is using a 640x380  
 //non minified version of p5 , //disable friendly errors 
@@ -240,17 +203,12 @@ function change_line_y_on_mousemove(p) {
 }
 
 
-//let background_gradient; 
 function draw_neoliberal_graphics(p) {
 
     if( line_reached_end_canvas()) {
         p.clear()
     }
 
-  //  set_gradient(p,0, 0, p.width / 2, p.height, b1, b2, X_AXIS);
-   // set_gradient(p, p.width / 2, 0, p.width / 2, p.height, b2, b1, X_AXIS);
-
-  // p.background(background_gradient)
 
     draw_grid_lines(p, vertical_lines_points)
     draw_grid_lines(p, horizontal_lines_points)
@@ -276,7 +234,6 @@ function p5_setup(p) {
     canvas.id("canvas"); //using p5 own function   
     
     //p.background(background_color)
-   // background_gradient = p.loadImage("gradient.jpg")
 
     update_sliding_camera_position_old(p)
     setup_flock(p)
