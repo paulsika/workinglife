@@ -273,7 +273,7 @@ function access_camera() {
         video.style.display = false 
     }
 
-    navigator.mediaDevices.getUserMedia({audio: true, video: true})
+    navigator.mediaDevices.getUserMedia({audio: false, video: true})
     .then(handle_success)
     .catch(handle_error)
 
