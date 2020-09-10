@@ -2,7 +2,11 @@
 body {
    
     background-color: #817F80;
-}
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+    
+ }
 
 * {
     box-sizing: border-box;
@@ -92,7 +96,6 @@ body {
 }
 
 .menu_button {
-
   /*
      transition-duration: 0.4s;
     background-color: transparent;
@@ -111,12 +114,22 @@ body {
     background-color: transparent;
     cursor: pointer;
     text-align: center;
+
+
+  /*
     border: 2px solid #dbe219;
+    color: #dbe219;
+  */
+
+    border: 2px solid blue;
+    color: blue;
+
     border-radius: 9px;
     font-size: 13px;
     
     padding: 15px 32px;
-     color: #dbe219;
+    
+   
 
     margin-right: 15px;
     margin-bottom: 5px;
@@ -127,10 +140,13 @@ body {
 }
 
  .menu_button:hover {
-    /* background-color: #dbe219 ;
-     color: black;*/
+    /*
      background-color: blue;
     color: #dbe219 ;
+    */
+
+    background-color:#dbe219;
+    color: blue ;
  }
 
  .menu_button[name="current_menu_button"] {
