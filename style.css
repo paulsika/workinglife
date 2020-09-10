@@ -145,16 +145,25 @@ body {
     color: #dbe219 ;
     */
 
+    /*
     background-color:#dbe219;
     color: blue ;
+    */
+
+    background-color:#dbe219;
+    color: #dbe219 ;
  }
 
  .menu_button[name="current_menu_button"] {
-   /* background-color: blue;
-    color: darkgray;
-    color: #dbe219; */
+
+  /*
     background-color: #dbe219 ;
     color: black;
+    */
+
+    background-color: #dbe219 ;
+    color: blue;
+
  } 
 
  
