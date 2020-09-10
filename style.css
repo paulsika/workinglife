@@ -8,6 +8,13 @@ body {
     
  }
 
+ ::-webkit-scrollbar {
+  width: 10px;
+/*  color: darkgray; */
+color: blue;
+}
+
+
 * {
     box-sizing: border-box;
   }
@@ -150,17 +157,17 @@ body {
     color: blue ;
     */
 
-    background-color:#dbe219;
+    /* background-color:#dbe219; */
+
     color: #dbe219 ;
+    border-color: #dbe219;
  }
 
  .menu_button[name="current_menu_button"] {
-
   /*
     background-color: #dbe219 ;
     color: black;
     */
-
     background-color: #dbe219 ;
     color: blue;
 
@@ -245,7 +252,9 @@ outline: 0;
    
     width: 90%;
     height: 100%;    
+
     overflow: scroll;
+    overflow-x: hidden;
 
     background-color: transparent ;
     color: black;
