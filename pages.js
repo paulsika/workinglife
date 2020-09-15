@@ -65,15 +65,6 @@ function is_current_page(page_id) {
 function is_page(page, page_id) {
 
     return (page.id == page_id)
-    /*
-    switch( page.id ) {
-        case "intro_page": visible = true; break; 
-        case "moles_page": visible = false;  break; 
-        case "neoliberal_page": visible = false; break; 
-        case "blurred_page": visible = true ; break;     
-        case "working_page": visible = false ;break; 
-        case "children_page": visible = false ;break; 
-    }*/
 }
 
 function change_canvas_visibility(page) {
@@ -87,13 +78,7 @@ function change_canvas_visibility(page) {
         case "blurred_page": visible = true ; break;     
         case "working_page": visible = false ;break; 
         case "children_page": visible = false ;break; 
-    }
-
-
-//  CANVAS VISIBLE OR NOT ACCORDING TO PAGE TO load_init. 
-// CHOOSE WHAT TO DRAW IN DRAW METHOD MIGHT BE THE BEST WAY 
-// draw_flock 
-// draw_... 
+    } 
 }
 
 function change_page(  page  ) {
@@ -107,7 +92,6 @@ function change_page(  page  ) {
     //add new page 
     main_text_area.appendChild(page);
     highlight_current_menu_button(page);
-
 
     current_page_id = page.id ;
 
@@ -138,15 +122,9 @@ function change_page(  page  ) {
         last_line_x = line_x ;         
         opposite_line_y = random_y()
 
-      
-
-
-
         if (p4 != null) {
         p4.clear();
         }
-
-
     }
 }
 
@@ -224,13 +202,7 @@ function intro_page() {
   return page ;
 }
 
-
 function blurred_page() {
-    
-//    return template_page("blurred", "images/blurred_lines.png", "essay.html")
-    //return template_page("blurred", "images/blurred_lines.png", "blurred_lines_text.html")
-
-    //return template_page("blurred", "images/blurred_lines.png", blurred_lines_text, blurred_lines_references)
     return template_page("blurred", "images/blurred_lines.png", blurred_lines_text)
 }
 
@@ -277,7 +249,6 @@ function access_camera() {
     .then(handle_success)
     .catch(handle_error)
 
-
 }
 
 function children_page() { 
@@ -297,6 +268,32 @@ function children_page() {
 
     return page 
 }
+
+
+function overlay_setup() {
+
+    let overlay = document.createElement("div")
+    overlay.id = "overlay"
+
+    let message = document.createElement("div")
+    message.id = "overlay_message"
+    message.innerText = "Please use on desktop for the best experience. It is really cool!!"
+
+    overlay.appendChild(message)
+    overlay.addEventListener("click", function() { overlay_off() })
+
+    return overlay
+}
+
+function overlay_on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function overlay_off() {
+    document.getElementById("overlay").style.display = "none";
+}
+
+
 
 
 function menu_button(id, inner_html, page) {
@@ -391,10 +388,9 @@ function sliding_camera() {
 function update_sliding_camera_position_old2(p) {
 
     let camera = document.getElementById("sliding_camera");
-   // let canvasHeight = document.getElementById("canvas").height ; 
+
     let upper_bound = 70.0 ;  let lower_bound = 5.0  ;
-    var cameraY = ( p.mouseY * 90.0) / canvasHeight  ;//magic number
-  // var cameraY = ( p.mouseY * 140.0) / canvasHeight  ;//magic number
+    var cameraY = ( p.mouseY * 90.0) / canvasHeight  ;
 
     if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
     if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
@@ -406,9 +402,8 @@ function update_sliding_camera_position_old2(p) {
 function update_sliding_camera_position_old(p) {
 
     let camera = document.getElementById("sliding_camera");
-   // let canvasHeight = document.getElementById("canvas").height ; 
     let upper_bound = 100.0 ;  let lower_bound = -20   ; // was 70.0 and 5.0
-    var cameraY = ( p.mouseY * 100.0) / canvasHeight  ;//magic number
+    var cameraY = ( p.mouseY * 100.0) / canvasHeight  ;
 
     if (cameraY >= upper_bound)  {  cameraY = upper_bound ; }
     if (cameraY <= lower_bound) {   cameraY = lower_bound ;  }
@@ -429,13 +424,6 @@ function eyes() {
     left_eye.id = "left_eye"
     left_eye.className = "eye"
 
-    /*
-    let left_eye_frame = document.createElement("div")
-    left_eye_frame.id = "left_eye_frame"
-    left_eye_frame.className = "eye_frame"
-
-*/
-
     let right_eye = document.createElement("div")
     right_eye.id = "right_eye"
     right_eye.className = "eye"
@@ -447,7 +435,6 @@ function eyes() {
     face.appendChild(left_eye)
     face.appendChild(space)
     face.appendChild(right_eye)
-   // move_area.appendChild(face)
 
     return face
 }

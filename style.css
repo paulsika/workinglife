@@ -11,8 +11,6 @@ body {
  ::-webkit-scrollbar {
   width: 6px;
 /*  color: darkgray; */
-
-
 }
 
 ::-webkit-scrollbar-track {
@@ -23,7 +21,6 @@ body {
  /* background: #ffff00; */
  background: blue;
  border-radius: 10px;
-
 }
 
 ::-webkit-scrollbar-thumb {
@@ -360,3 +357,9 @@ outline: 0;
   z-index: -5;
   opacity: 0.8;
 }
+
+
+#overlay {
+  display: none; 
+}
+

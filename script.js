@@ -2,20 +2,15 @@ var canvasWidth =  window.innerWidth ;
 var canvasHeight = window.innerHeight;
 
 var p4 = null ; 
-/*
-var canvasWidth = window.outerWidth;
-var canvasHeight = window.outerHeight;
-*/
+
 
 const flock = [];
-//canvas size matters, //number of boids matters //Daniel is using a 640x380  
-//non minified version of p5 , //disable friendly errors 
+
 let flock_count = 100 // was 200 then 150
 function setup_flock(p) {
     for (let i = 0; i < flock_count; i++) {
         flock.push(new Boid(p));
     }
-    //console.log("CANVAS HEIGHT WIDTH", canvasHeight, canvasHeight)
 }
 
 function draw_flock(p) {
@@ -43,8 +38,7 @@ function draw_lines_from_flock(p) {
 }
 
 function draw_triangles_from_flock(p) {
-    //let vertices = island_bodies.map( a_body => a_body.position) ;
-    //let boid_pairs = _.chunk(flock, 2)
+    
     let boid_positions = flock.map(a_boid => a_boid.position)
     let position_pairs = _.chunk(boid_positions, 3)
     
@@ -99,10 +93,6 @@ function draw_blurred_lines(p) {
     draw_lines_from_flock(p)
 }
 
-//let grid_label = "Soft Body"
-//let grid_origin = { "x": 0, "y": 0 }
-//let grid_columns = 20;
-//let grid_rows = 12;
 let grid_width_step = 100;
 let grid_height_step = 100;
 
@@ -134,11 +124,6 @@ function draw_grid_lines(p, lines) {
         p.line(pt1.x, pt1.y, pt2.x, pt2.y)
     }
 }
-
-
-
-
-//var line_y = canvasHeight / 2 ; 
 
 function random_y() { return _.random( canvasHeight/3 , canvasHeight * 3/4) }
 
@@ -232,8 +217,6 @@ function p5_setup(p) {
 
     let canvas = p.createCanvas(canvasWidth, canvasHeight);
     canvas.id("canvas"); //using p5 own function   
-    
-    //p.background(background_color)
 
     update_sliding_camera_position_old(p)
     setup_flock(p)
@@ -242,9 +225,7 @@ function p5_setup(p) {
 }
 
 function p5_draw(p) {
-    //p.clear();
 
-  
     p.noStroke();
    update_clock(p);
  
@@ -284,6 +265,9 @@ function pre_init() {
 function init() {
 
     let page_elements = [
+
+        overlay_setup(),
+
         p5_canvas_container(), 
         menu(), 
         main_text_area(),
@@ -293,7 +277,6 @@ function init() {
         ];
     page_elements.forEach(element => document.body.appendChild(element));
 
-    //eyes_follow_cursor()
     eyes_follow_cursor_jquery()
 
     let sketch = function (p) {
