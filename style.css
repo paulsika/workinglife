@@ -10,8 +10,8 @@ body {
 
  ::-webkit-scrollbar {
   width: 6px;
-
 /*  color: darkgray; */
+
 
 }
 
@@ -21,10 +21,15 @@ body {
   border-radius: 10px; */
 
  /* background: #ffff00; */
+ background: blue;
+ border-radius: 10px;
+
 }
+
 ::-webkit-scrollbar-thumb {
   background: darkgray;
 
+  background: #dbe219;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -176,6 +181,7 @@ body {
 
     color: #dbe219 ;
     border-color: #dbe219;
+    background-color: blue;
  }
 
  .menu_button[name="current_menu_button"] {
